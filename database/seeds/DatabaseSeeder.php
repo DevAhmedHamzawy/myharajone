@@ -2,6 +2,7 @@
 
 use App\Admin;
 use App\CarPost;
+use App\Comment;
 use App\EstatePost;
 use App\Post;
 use App\PostMedia;
@@ -30,6 +31,6 @@ class DatabaseSeeder extends Seeder
 
         //factory(Admin::class, 10)->create();
 
-
+        factory(Comment::class, 100)->create();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,7 +15,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::inRandomOrder()->paginate(6);
+        foreach ($posts as $post) {
+            $post->areaName = Post::getMainArea($post->area_id);
+        }
+        return view('main.posts.index', ['posts' => $posts, 'views' => views($post)->unique()->count()]);
     }
 
     /**
@@ -46,7 +51,12 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        // Record a view
+        views($post)->record();
+        
+        $post->areaName = Post::getMainArea($post->area_id);
+        $views = views($post)->unique()->count();
+        return view('main.posts.show', compact('post','views'));
     }
 
     /**

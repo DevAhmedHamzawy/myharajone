@@ -26,11 +26,12 @@ class CreatePostsTable extends Migration
             $table->string('telephone1');
             $table->string('telephone2');
             $table->string('email');
-            $table->enum('show-contact-telephone1', ['نعم','لا']);
-            $table->enum('show-contact-telephone2', ['نعم','لا']);
-            $table->enum('show-contact-email', ['نعم','لا']);
+            $table->enum('show_contact_telephone1', ['نعم','لا']);
+            $table->enum('show_contact_telephone2', ['نعم','لا']);
+            $table->enum('show_contact_email', ['نعم','لا']);
             $table->integer('position');
             $table->enum('visible', ['نعم','لا']);
+            $table->decimal('price', 10,7);
             $table->enum('ad_sort', ['للبيع','للإيجار','مهم','مطلوب عاجل','للإستثمار']);
             $table->enum('price_sort', ['اخرى','تعامل مباشر','غير قابل للتفاوض','على السوم','قابل للتفاوض']);
             $table->enum('payment_sort', ['نقداً','أقساط شهرية','على دفعات','شيك مصدق','أخرى']);

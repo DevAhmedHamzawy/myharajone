@@ -40,3 +40,5 @@ Route::group(['middleware' => 'verified'], function (){
 });
 
 Route::get('/', 'HomeController@welcome');
+Route::resource('/posts', 'PostController');
+Route::post('/sendcomment', 'CommentController@store');

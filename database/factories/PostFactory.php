@@ -49,6 +49,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'show-contact-email' => $faker->randomElement(['نعم','لا']),
         'position' => $faker->numberBetween(1,50),
         'visible' => $faker->randomElement(['نعم','لا']),
+        'price' => $faker->numberBetween(100,500),
         'ad_sort' => $faker->randomElement(['للبيع','للإيجار','مهم','مطلوب عاجل','للإستثمار']),
         'price_sort' => $faker->randomElement(['اخرى','تعامل مباشر','غير قابل للتفاوض','على السوم','قابل للتفاوض']),
         'payment_sort' => $faker->randomElement(['نقداً','أقساط شهرية','على دفعات','شيك مصدق','أخرى']),
