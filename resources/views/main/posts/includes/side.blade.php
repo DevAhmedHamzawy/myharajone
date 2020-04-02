@@ -10,6 +10,11 @@
 
     </div>
 
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Launch demo modal
+    </button>
+
     <div class="mb-5">
       <h3 class="h5 text-black mb-3">Popular Posts</h3>
       <ul class="list-unstyled">

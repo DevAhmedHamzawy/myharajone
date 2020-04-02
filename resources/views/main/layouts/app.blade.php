@@ -14,7 +14,7 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="{{ asset('main/fonts/icomoon/style.css') }}">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('main/css/bootstrap.min.css') }}">

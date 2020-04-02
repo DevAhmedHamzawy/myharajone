@@ -41,7 +41,17 @@ class Post extends Model implements Viewable
 
     public function comments()
     {
-        return $this->hasMany('App\Comment')->whereNull('parent_id');
+        return $this->hasMany('App\Comment');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Like', 'post_id')->whereLike(1);
+    }
+
+    public function dislikes()
+    {
+        return $this->hasMany('App\Like', 'post_id')->whereLike(-1);
     }
 
     public function getcreateAtAttribute()

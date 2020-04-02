@@ -42,3 +42,20 @@ Route::group(['middleware' => 'verified'], function (){
 Route::get('/', 'HomeController@welcome');
 Route::resource('/posts', 'PostController');
 Route::post('/sendcomment', 'CommentController@store');
+Route::post('/sendmessage', 'MessageController@store');
+
+
+//Post Like & Dislike
+Route::post('like', 'LikeController@like');
+Route::post('dislike', 'LikeController@dislike');
+Route::post('check', 'LikeController@check');
+
+Route::resource('favourites', 'FavouriteController', ['only' => ['store']]);
+Route::post('reportpost', 'ReportController@store');
+
+ //Messages Inbox
+ Route::get('{user}/messages', 'MessageController@index')->name('inbox');
+
+ //Show Messages
+ Route::get('{user}/{from}/{to}/messages', 'MessageController@show')->name('messages.show');
+
