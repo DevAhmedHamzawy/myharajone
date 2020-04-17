@@ -6,7 +6,7 @@
 
 @section('content')
 
-  @include('main.posts.includes.cover')
+  @include('main.posts.includes.show.cover')
 
   <div class="site-section">
     <div class="container">
@@ -59,19 +59,19 @@
           </div>
 
 
-          @include('main.posts.includes.comments')
+          @include('main.posts.includes.show.comments')
 
         </div>
 
 
-        @include('main.posts.includes.side')
+        @include('main.posts.includes.show.side')
 
       </div>
     </div>
   </div>
 
 
-  @include('main.posts.includes.messages')
+  @include('main.posts.includes.show.messages')
 @endsection
 
 

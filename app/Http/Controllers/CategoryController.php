@@ -82,4 +82,9 @@ class CategoryController extends Controller
     {
         //
     }
+
+    public function children($id)
+    {
+        return Category::whereParentId($id)->get();
+    }
 }

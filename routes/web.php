@@ -59,3 +59,11 @@ Route::post('reportpost', 'ReportController@store');
  //Show Messages
  Route::get('{user}/{from}/{to}/messages', 'MessageController@show')->name('messages.show');
 
+ //Search
+ Route::post('search', 'SearchController@getFilters')->name('search');
+
+ //Category Children
+ Route::get('category_children/{id}', 'CategoryController@children')->name('category-children');
+
+ //Show Areas
+ Route::get('areas/{area}' , 'AreaController@show')->name('areas.show');

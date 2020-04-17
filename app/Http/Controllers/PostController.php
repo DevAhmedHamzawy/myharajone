@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class PostController extends Controller
         foreach ($posts as $post) {
             $post->areaName = Post::getMainArea($post->area_id);
         }
-        return view('main.posts.index', ['posts' => $posts, 'views' => views($post)->unique()->count()]);
+        $mainCategories = Category::whereParentId(null)->get();
+        return view('main.posts.index', ['posts' => $posts, 'views' => views($post)->unique()->count(), 'mainCategories' => $mainCategories]);
     }
 
     /**

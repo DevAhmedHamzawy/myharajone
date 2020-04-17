@@ -2,11 +2,13 @@
 
 namespace App;
 
+use App\Filters\BaseFilter;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model implements Viewable
 {
@@ -93,4 +95,9 @@ class Post extends Model implements Viewable
         $mainArea = Area::where('id', $secondArea->parent_id)->first() ?? 'غير محدد';
         return [$secondArea->name, $mainArea->name];
     }
+
+    public static function scopeFilter(Builder $builder, $filters)
+    {
+        return (new BaseFilter(request()))->apply($builder, $filters);
+    }   
 }
