@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('main.layouts.app')
 
 @section('content')
 <div class="container">
@@ -26,12 +26,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="emailmobile" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="emailmobile" type="text" class="form-control @error('emailmobile') is-invalid @enderror" name="emailmobile" value="{{ old('emailmobile') }}" required autocomplete="emailmobile">
 
-                                @error('email')
+                                @error('emailmobile')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

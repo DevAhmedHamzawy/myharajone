@@ -67,3 +67,9 @@ Route::post('reportpost', 'ReportController@store');
 
  //Show Areas
  Route::get('areas/{area}' , 'AreaController@show')->name('areas.show');
+
+ Route::get('blacklist' , 'BlacklistController@index')->name('blacklist');
+
+ Route::post('blacklist' , 'BlacklistController@show')->name('blacklist.show');
+
+ Route::post('results' , 'SearchController@welcomeSearch')->name('welcome-search');

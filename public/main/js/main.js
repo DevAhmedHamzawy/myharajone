@@ -170,8 +170,9 @@ jQuery(document).ready(function($) {
 				autoplayTimeout:1000,
 				autoplayHoverPause:false,
 
-		    nav: true,
-				navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">'],
+			nav: true,
+			rtl:true,
+				navText: ['<span class="icon-keyboard_arrow_right">', '<span class="icon-keyboard_arrow_left">'],
 		    responsive:{
 	        600:{
 	        	margin: 30,
@@ -201,7 +202,8 @@ jQuery(document).ready(function($) {
 	    margin: 0,
 	    autoplay: true,
 	    pauseOnHover: false,
-	    nav: true,
+		nav: true,
+		rtl:true,
 	    navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">'],
 	  });
 	};

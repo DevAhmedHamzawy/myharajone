@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin;
+use App\Blacklist;
 use App\CarPost;
 use App\Comment;
 use App\EstatePost;
@@ -31,6 +32,8 @@ class DatabaseSeeder extends Seeder
 
         //factory(Admin::class, 10)->create();
 
-        factory(Comment::class, 100)->create();
+        //factory(Comment::class, 100)->create();
+
+        //factory(Blacklist::class, 100)->create();
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Area;
+use App\Category;
 use App\Filters\AreaFilter;
 use App\Filters\CategoryFilter;
 use App\Filters\TitleFilter;
@@ -23,6 +25,15 @@ class SearchController extends Controller
         //return view('main.posts.index', compact('posts'));
     }
 
+    public function welcomeSearch(Request $request)
+    {
+        $posts = Post::filter($this->filters())->paginate(6);
+        $views = 0;
+        $mainCategories = Category::whereParentId(null)->get();
+
+        return view('main.posts.index', compact('posts','mainCategories','views'));
+    }
+
     protected function filters()
     {
         return [
@@ -32,4 +43,6 @@ class SearchController extends Controller
             
         ];
     }
+
+    
 }

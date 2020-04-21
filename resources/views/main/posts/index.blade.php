@@ -64,6 +64,7 @@
             $('.sub-category').append('<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>');
             if(id.value != 1){
               $('.sub-category-one').empty();
+              $('.sub-category-two').empty();
               $('.sub-category').append('<select class="form-control category-sub-category" onchange="search()"></select>');
             }else{
               $('.sub-category').append('<select class="form-control category-sub-category" onchange="getSubChildren(this)"></select>');
@@ -89,6 +90,17 @@
 
             for (const subcategory of response.data) {
               $('.category-sub-category-one').append('<option value="'+subcategory.id+'">'+subcategory.name+'</option>')
+            }
+
+            var d = new Date();
+            var n = d.getFullYear();
+
+            $('.sub-category-two').empty();
+            $('.sub-category-two').append('<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>');
+            $('.sub-category-two').append('<select class="form-control category-sub-category-two" onchange="search()"></select>');
+            
+            for (let i = 1960; i <= n; i++) {
+                $('.category-sub-category-two').append('<option>'+i+'</option>')
             }
       
           })

@@ -14,7 +14,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        return Service::pluck('name');
     }
 
     /**

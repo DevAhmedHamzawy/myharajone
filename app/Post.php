@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Filters\BaseFilter;
+use App\Traits\EnumValues;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,8 +13,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model implements Viewable
 {
-    use SoftDeletes, InteractsWithViews;
+    use SoftDeletes, InteractsWithViews, EnumValues;
     
+    protected $guarded = [];
     protected $dates = ['deleted_at'];
     protected $with = ['comments'];
 
@@ -54,6 +56,16 @@ class Post extends Model implements Viewable
     public function dislikes()
     {
         return $this->hasMany('App\Like', 'post_id')->whereLike(-1);
+    }
+
+    public function favourites()
+    {
+        return $this->hasMany('App\Favourite');
+    }
+
+    public function reports()
+    {
+        return $this->hasMany('App\Report');
     }
 
     public function getcreateAtAttribute()

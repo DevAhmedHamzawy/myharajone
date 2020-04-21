@@ -49,11 +49,17 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        $validation = ['name' => ['required', 'string', 'max:255'],
+        'password' => ['required', 'string', 'min:8', 'confirmed']];
+
+        if(is_numeric($data['emailmobile'])){
+            $validation['emailmobile'] = ['required', 'regex:/(01)[0-9]{9}/', 'unique:users,mobile'];
+        }else{
+            $validation['emailmobile'] = ['required', 'string', 'email', 'max:255', 'unique:users,email'];
+        }
+
+
+        return Validator::make($data, $validation);
     }
 
     /**
@@ -64,9 +70,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if(is_numeric($data['emailmobile'])){
+            $data['email'] = null;
+            $data['mobile'] = $data['emailmobile'];
+        }else{
+            $data['mobile'] = null;
+            $data['email'] = $data['emailmobile'];
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'mobile' => $data['mobile'],
             'password' => Hash::make($data['password']),
         ]);
     }

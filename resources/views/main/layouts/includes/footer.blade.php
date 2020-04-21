@@ -86,3 +86,66 @@
 <script src="{{ asset('main/js/rangeslider.min.js') }}"></script>
 
 <script src="{{ asset('main/js/main.js') }}"></script>
+
+<script>
+
+function getChildren(id)
+      {
+        axios.get(`../category_children/${id.value}`)
+        .then(function (response) {
+            $('.sub-category').empty();
+            $('.sub-category').append('<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>');
+            if(id.value != 1){
+              $('.sub-category-one').empty();
+              $('.sub-category-two').empty();
+              $('.sub-category').append('<select class="form-control category-sub-category" name="category_id"></select>');
+            }else{
+              $('.sub-category').append('<select class="form-control category-sub-category" onchange="getSubChildren(this)"></select>');
+            }
+
+            if(id.value == 2){
+                $('.post-estate-map').css("display", "block");
+            }else{
+                $('.post-estate-map').css("display", "none");
+            }
+
+            for (const subcategory of response.data) {
+              $('.category-sub-category').append('<option value="'+subcategory.id+'">'+subcategory.name+'</option>')
+            }
+      
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+
+
+      function getSubChildren(id)
+      {
+        axios.get(`../category_children/${id.value}`)
+        .then(function (response) {
+            $('.sub-category-one').empty();
+            $('.sub-category-one').append('<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>');
+            $('.sub-category-one').append('<select class="form-control category-sub-category-one" name="category_id"></select>');
+
+            for (const subcategory of response.data) {
+              $('.category-sub-category-one').append('<option value="'+subcategory.id+'">'+subcategory.name+'</option>')
+            }
+
+            var d = new Date();
+            var n = d.getFullYear();
+
+            $('.sub-category-two').empty();
+            $('.sub-category-two').append('<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>');
+            $('.sub-category-two').append('<select class="form-control category-sub-category-two" name="model"></select>');
+            
+            for (let i = 1960; i <= n; i++) {
+                $('.category-sub-category-two').append('<option>'+i+'</option>')
+            }
+      
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+</script>

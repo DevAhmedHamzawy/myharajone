@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\CarPost;
 use App\Category;
+use App\EstatePost;
 use App\Post;
+use App\Service;
 use App\Tag;
 use Illuminate\Http\Request;
 
@@ -31,7 +34,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('main.posts.create', ['mainCategories' => Category::whereParentId(null)->get(), 'tags' => Tag::pluck('name'), 'services' => Service::pluck('name'), 'adSorts' => Post::getPossibleEnumValues('ad_sort'), 'priceSorts' => Post::getPossibleEnumValues('price_sort'), 'paymentSorts' => Post::getPossibleEnumValues('payment_sort'), 'destinations' => EstatePost::getPossibleEnumValues('destination'), 'sorts' => EstatePost::getPossibleEnumValues('sort'), 'contracts' => EstatePost::getPossibleEnumValues('contract')]);
     }
 
     /**
@@ -42,7 +45,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->merge(['code' => rand(10,50000), 'user_id' => auth()->user()->id, 'position' => Post::count()+1, 'visible' => 'نعم']);
+        if($request->show_contact_telephone1 == "on"){ $request->merge(['show_contact_telephone1' => 'نعم']); }else{ $request->merge(['show_contact_telephone1' => 'لا']); }
+        if($request->show_contact_telephone2 == "on"){ $request->merge(['show_contact_telephone2' => 'نعم']); }else{ $request->merge(['show_contact_telephone2' => 'لا']); }
+        if($request->show_contact_email == "on"){ $request->merge(['show_contact_email' => 'نعم']); }else{ $request->merge(['show_contact_email' => 'لا']); }
+
+        $post = Post::create($request->except('_token','main_category','latlng','destination','sort','contract','model'));
+        $request->merge(['post_id' => $post->id]);
+
+        if($request->main_category == 1){
+            CarPost::create($request->only('post_id','model'));
+        }elseif ($request->main_category == 2) {
+            $latlngArray = explode(',' , $request->input('latlng'));
+            $request->merge(['lat' => $latlngArray[0] , 'lng' => $latlngArray[1]]);
+            EstatePost::create($request->only('post_id','lat','lng','destination','sort','contract'));
+        }
+
+        return 'ok';
     }
 
     /**
@@ -56,6 +75,21 @@ class PostController extends Controller
         // Record a view
         views($post)->record();
         
+        // get Category Object;
+        $category = Category::findOrFail($post->category_id);
+        views($category)->record();
+
+        $parentCategory = Category::findOrfail($category->parent_id);
+        views($parentCategory)->record();
+
+        if($parentCategory->parent_id == 1){
+            $parentCategory = Category::findOrfail($parentCategory->parent_id);
+            views($parentCategory)->record();
+        }
+
+
+       
+
         $post->areaName = Post::getMainArea($post->area_id);
         $views = views($post)->unique()->count();
         return view('main.posts.show', compact('post','views'));
@@ -69,7 +103,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('main.posts.edit', ['post' => $post, 'mainCategories' => Category::whereParentId(null)->get(), 'tags' => Tag::pluck('name'), 'services' => Service::pluck('name'), 'adSorts' => Post::getPossibleEnumValues('ad_sort'), 'priceSorts' => Post::getPossibleEnumValues('price_sort'), 'paymentSorts' => Post::getPossibleEnumValues('payment_sort'), 'destinations' => EstatePost::getPossibleEnumValues('destination'), 'sorts' => EstatePost::getPossibleEnumValues('sort'), 'contracts' => EstatePost::getPossibleEnumValues('contract')]);
     }
 
     /**
@@ -81,7 +115,26 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->merge(['code' => rand(10,50000), 'user_id' => auth()->user()->id, 'position' => Post::count()+1, 'visible' => 'نعم']);
+        if($request->show_contact_telephone1 == "on"){ $request->merge(['show_contact_telephone1' => 'نعم']); }else{ $request->merge(['show_contact_telephone1' => 'لا']); }
+        if($request->show_contact_telephone2 == "on"){ $request->merge(['show_contact_telephone2' => 'نعم']); }else{ $request->merge(['show_contact_telephone2' => 'لا']); }
+        if($request->show_contact_email == "on"){ $request->merge(['show_contact_email' => 'نعم']); }else{ $request->merge(['show_contact_email' => 'لا']); }
+
+        $post->update($request->except('_token','main_category','latlng','destination','sort','contract','model'));
+        $request->merge(['post_id' => $post->id]);
+
+        // reminder .... maybe id of car or estate will not be existed in 
+        // the main post table
+        // delete it automatically
+        if($request->main_category == 1){
+            CarPost::updateOrCreate(['id' => $post->id],$request->only('post_id','model'));
+        }elseif ($request->main_category == 2) {
+            $latlngArray = explode(',' , $request->input('latlng'));
+            $request->merge(['lat' => $latlngArray[0] , 'lng' => $latlngArray[1]]);
+            EstatePost::updateOrCreate(['id' => $post->id],$request->only('post_id','lat','lng','destination','sort','contract'));
+        }
+
+        return 'ok';
     }
 
     /**
