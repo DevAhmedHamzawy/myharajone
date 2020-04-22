@@ -112,4 +112,22 @@ class Post extends Model implements Viewable
     {
         return (new BaseFilter(request()))->apply($builder, $filters);
     }   
+
+
+    //Get Main Image Path
+    public function getMainImgPathAttribute()
+    {
+        if(!empty($this->images)){
+            $images = json_decode($this->images->img, true);
+            if(file_exists(public_path() .'/storage/estates/'. $this->name . '/' .$images[0]))
+            {
+                return url('storage/estates/'. $this->name . '/' .$images[0]);
+            }else{
+                return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
+            }
+        }else{
+            //return null;
+            return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
+        }
+    }
 }

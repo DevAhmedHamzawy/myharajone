@@ -28,17 +28,12 @@ $factory->define(Post::class, function (Faker $faker) {
 
     //كل الحراج 
     $category_id = Category::whereBetween('id', [115,139])->inRandomOrder()->first()->id;
-    $tags = Category::whereParentId($category_id)->orWhere('parent_id', 4)->orWhereBetween('parent_id', [115,139])->inRandomOrder()->get()->pluck('id')->toArray();
-    $services = Category::whereParentId($category_id)->orWhere('parent_id', 4)->orWhereBetween('parent_id', [115,139])->inRandomOrder()->get()->pluck('id')->toArray();
-
-
+  
     return [
         'code' => $faker->numberBetween(1,10000),
         'area_id' => function(){ return Area::whereNotNull('parent_id')->whereNotNull('name')->get()->random()->id; },
         'user_id' => function(){ return User::all()->random()->id; },
         'category_id' => $category_id,
-        'tags' => serialize($tags),
-        'services' => serialize($services),
         'title' => $faker->sentence(1),
         'body' => $faker->paragraph(3),
         'telephone1' => $faker->e164PhoneNumber(),

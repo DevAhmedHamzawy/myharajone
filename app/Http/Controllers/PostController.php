@@ -6,8 +6,6 @@ use App\CarPost;
 use App\Category;
 use App\EstatePost;
 use App\Post;
-use App\Service;
-use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -34,7 +32,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('main.posts.create', ['mainCategories' => Category::whereParentId(null)->get(), 'tags' => Tag::pluck('name'), 'services' => Service::pluck('name'), 'adSorts' => Post::getPossibleEnumValues('ad_sort'), 'priceSorts' => Post::getPossibleEnumValues('price_sort'), 'paymentSorts' => Post::getPossibleEnumValues('payment_sort'), 'destinations' => EstatePost::getPossibleEnumValues('destination'), 'sorts' => EstatePost::getPossibleEnumValues('sort'), 'contracts' => EstatePost::getPossibleEnumValues('contract')]);
+        return view('main.posts.create', ['mainCategories' => Category::whereParentId(null)->get(), 'adSorts' => Post::getPossibleEnumValues('ad_sort'), 'priceSorts' => Post::getPossibleEnumValues('price_sort'), 'paymentSorts' => Post::getPossibleEnumValues('payment_sort'), 'destinations' => EstatePost::getPossibleEnumValues('destination'), 'sorts' => EstatePost::getPossibleEnumValues('sort'), 'contracts' => EstatePost::getPossibleEnumValues('contract')]);
     }
 
     /**
@@ -103,7 +101,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('main.posts.edit', ['post' => $post, 'mainCategories' => Category::whereParentId(null)->get(), 'tags' => Tag::pluck('name'), 'services' => Service::pluck('name'), 'adSorts' => Post::getPossibleEnumValues('ad_sort'), 'priceSorts' => Post::getPossibleEnumValues('price_sort'), 'paymentSorts' => Post::getPossibleEnumValues('payment_sort'), 'destinations' => EstatePost::getPossibleEnumValues('destination'), 'sorts' => EstatePost::getPossibleEnumValues('sort'), 'contracts' => EstatePost::getPossibleEnumValues('contract')]);
+        return view('main.posts.edit', ['post' => $post, 'mainCategories' => Category::whereParentId(null)->get(), 'adSorts' => Post::getPossibleEnumValues('ad_sort'), 'priceSorts' => Post::getPossibleEnumValues('price_sort'), 'paymentSorts' => Post::getPossibleEnumValues('payment_sort'), 'destinations' => EstatePost::getPossibleEnumValues('destination'), 'sorts' => EstatePost::getPossibleEnumValues('sort'), 'contracts' => EstatePost::getPossibleEnumValues('contract')]);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 @section('content')
     
-<div class="site-blocks-cover overlay" style="background-image: url(images/hero_2.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+<div class="site-blocks-cover overlay" style="background-image: url('{{ url('storage/settings/cover/home.jpg')}}'); " data-aos="fade" data-stellar-background-ratio="0.5">
     <div class="container">
       <div class="row align-items-center justify-content-center text-center">
 
@@ -10,9 +10,9 @@
           
           
           <div class="row justify-content-center mb-4">
-            <div class="col-md-8 text-center">
-              <h1 class="" data-aos="fade-up">Welcome To DirectoryAds</h1>
-              <p data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+            <div class="col-md-8 text-center" style="margin-top:80px;">
+              <h1 class="" data-aos="fade-up">مرحباً بكم فى حراج</h1>
+              <p data-aos="fade-up" data-aos-delay="100">منتجات مميزة ، لعملاء مميزون</p>
             </div>
           </div>
 
@@ -84,7 +84,7 @@
                 </div>
                 <br><br><br><br>
                 <div class="col-lg-12 col-xl-12 ml-auto text-right">
-                  <input type="submit" class="btn btn-primary btn-block rounded" value="Search">
+                  <input type="submit" class="btn btn-primary btn-block rounded" value="بــــحــــث">
                 </div>
                 
               </div>
@@ -93,7 +93,7 @@
 
           <div class="row text-left trending-search" data-aos="fade-up"  data-aos-delay="300">
             <div class="col-12">
-              <h2 class="d-inline-block">Trending Search:</h2>
+              <h2 class="d-inline-block">الأكثر بحثاً:</h2>
               @foreach ($trends as $trend)
                 <a href="#">{{ $trend->name }}</a>
               @endforeach
@@ -111,7 +111,7 @@
       
       <div class="row">
         <div class="col-12">
-          <h2 class="h5 mb-4 text-black">Featured Ads</h2>
+          <h2 class="h5 mb-4 text-black">الإعلانات المميزة</h2>
         </div>
       </div>
       <div class="row">
@@ -121,16 +121,16 @@
             @foreach ($trendingPosts as $post)
                 
             <div class="d-block d-md-flex listing vertical">
-              <a href="{{ route('posts.show', $post->title) }}" class="img d-block" style="background-image: url('images/img_1.jpg')"></a>
+              <a href="{{ route('posts.show', $post->title) }}" class="img d-block" style="background-image: url({{ $post->main_img_path }})"></a>
               <div class="lh-content">
                 <span class="category">{{ $post->category->name }}</span>
-                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+                <span class="icon-eye"></span>{{ $post->views }}
+                <span class="icon-attach_money"></span>{{ number_format($post->price, 2, '.', '') }}
+                <p style="font-size:9px;font-weight:bold;"><span class="icon-flag-o"></span> &nbsp; {{ $post->ad_sort }} &nbsp; <span class="icon-hand-o-left"></span> &nbsp; {{ $post->price_sort }} &nbsp; <span class="icon-money"></span> &nbsp; {{ $post->payment_sort }}</p>
                 <h3><a href="{{ route('posts.show', $post->title) }}">{{ $post->title }}</a></h3>
-                <p>مشاهدات: {{ $post->views }}, {{ $post->ad_sort }} , {{ $post->price_sort }} , {{ $post->payment_sort }}</p>
-                <p>{{ number_format($post->price, 2, '.', '') }}</p>
-                <p>{{ $post->user->name }}</p>
-                <p>{{ $post->create_at }}</p>
-                <address>{{ $post->area->name }}, {{ $post->areaName[0] }},  {{ $post->areaName[1] }}</address>    
+                <p style="font-size:13px;"><span class="icon-user"></span>{{ $post->user->name }}</p>
+                <p style="font-size:13px;"><span class="icon-clock-o"></span>{{ $post->create_at }}</p>
+                <address style="font-size:11.5px;font-weight:bold;"><span class="icon-room"></span>{{ $post->area->name }}, {{ $post->areaName[0] }},  {{ $post->areaName[1] }}</address>    
               </div>
             </div>
 
@@ -186,7 +186,7 @@
     <div class="container">
       <div class="row mb-5">
         <div class="col-md-7 text-left border-primary">
-          <h2 class="font-weight-light text-primary">Trending Today</h2>
+          <h2 class="font-weight-light text-primary">الإعلانات الذهبية</h2>
         </div>
       </div>
       <div class="row mt-5">
@@ -197,17 +197,17 @@
           @if ($i % 2 != 0)
               
           <div class="d-block d-md-flex listing">
-            <a href="{{ route('posts.show', $post->title) }}" class="img d-block" style="background-image: url('images/img_1.jpg')"></a>
-              <div class="lh-content">
-                <span class="category">{{ $post->category->name }}</span>
-                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-                <h3><a href="{{ route('posts.show', $post->title) }}">{{ $post->title }}</a></h3>
-                <p>مشاهدات: {{ $post->views }}, {{ $post->ad_sort }} , {{ $post->price_sort }} , {{ $post->payment_sort }}</p>
-                <p>{{ number_format($post->price, 2, '.', '') }}</p>
-                <p>{{ $post->user->name }}</p>
-                <p>{{ $post->create_at }}</p>
-                <address>{{ $post->area->name }}, {{ $post->areaName[0] }},  {{ $post->areaName[1] }}</address>    
-              </div>
+            <a href="{{ route('posts.show', $post->title) }}" class="img d-block" style="background-image: url({{ $post->main_img_path }})"></a>
+            <div class="lh-content">
+              <span class="category">{{ $post->category->name }}</span>
+              <span class="icon-eye"></span>{{ $post->views }}
+              <span class="icon-attach_money"></span>{{ number_format($post->price, 2, '.', '') }}
+              <p style="font-size:11px;font-weight:bold;"><span class="icon-flag-o"></span> &nbsp; {{ $post->ad_sort }} &nbsp; <span class="icon-hand-o-left"></span> &nbsp; {{ $post->price_sort }} &nbsp; <span class="icon-money"></span> &nbsp; {{ $post->payment_sort }}</p>
+              <h3><a href="{{ route('posts.show', $post->title) }}">{{ $post->title }}</a></h3>
+              <p style="font-size:15px;"><span class="icon-user"></span>{{ $post->user->name }}</p>
+              <p style="font-size:15px;"><span class="icon-clock-o"></span>{{ $post->create_at }}</p>
+              <address style="font-size:13.5px;font-weight:bold;"><span class="icon-room"></span>{{ $post->area->name }}, {{ $post->areaName[0] }},  {{ $post->areaName[1] }}</address>    
+            </div>
           </div>
           @endif
           @php $i++ @endphp
@@ -228,17 +228,17 @@
           @if ($i % 2 == 0)
               
           <div class="d-block d-md-flex listing">
-            <a href="{{ route('posts.show', $post->title) }}" class="img d-block" style="background-image: url('images/img_1.jpg')"></a>
-              <div class="lh-content">
-                <span class="category">{{ $post->category->name }}</span>
-                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-                <h3><a href="{{ route('posts.show', $post->title) }}">{{ $post->title }}</a></h3>
-                <p>مشاهدات: {{ $post->views }}, {{ $post->ad_sort }} , {{ $post->price_sort }} , {{ $post->payment_sort }}</p>
-                <p>{{ number_format($post->price, 2, '.', '') }}</p>
-                <p>{{ $post->user->name }}</p>
-                <p>{{ $post->create_at }}</p>
-                <address>{{ $post->area->name }}, {{ $post->areaName[0] }},  {{ $post->areaName[1] }}</address>    
-              </div>
+            <a href="{{ route('posts.show', $post->title) }}" class="img d-block" style="background-image: url({{ $post->main_img_path }})"></a>
+            <div class="lh-content">
+              <span class="category">{{ $post->category->name }}</span>
+              <span class="icon-eye"></span>{{ $post->views }}
+              <span class="icon-attach_money"></span>{{ number_format($post->price, 2, '.', '') }}
+              <p style="font-size:11px;font-weight:bold;"><span class="icon-flag-o"></span> &nbsp; {{ $post->ad_sort }} &nbsp; <span class="icon-hand-o-left"></span> &nbsp; {{ $post->price_sort }} &nbsp; <span class="icon-money"></span> &nbsp; {{ $post->payment_sort }}</p>
+              <h3><a href="{{ route('posts.show', $post->title) }}">{{ $post->title }}</a></h3>
+              <p style="font-size:15px;"><span class="icon-user"></span>{{ $post->user->name }}</p>
+              <p style="font-size:15px;"><span class="icon-clock-o"></span>{{ $post->create_at }}</p>
+              <address style="font-size:13.5px;font-weight:bold;"><span class="icon-room"></span>{{ $post->area->name }}, {{ $post->areaName[0] }},  {{ $post->areaName[1] }}</address>    
+            </div>
           </div>
           @endif
           @php $i++ @endphp

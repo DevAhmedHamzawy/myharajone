@@ -2,6 +2,28 @@
 
 @section('header')
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        ul{
+            list-style-type: none;
+            display: inline;
+        }
+        ul li{
+            display: inline-block;
+            padding-left: 6.8em;
+        }
+        ul li .fa{
+            font-size: 2em;
+        }
+
+        .bookmark span{
+            font-size: 3em;
+        }
+
+        .the-likes span{
+            font-size: 1.5em;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -14,7 +36,7 @@
         <div class="col-lg-8">
 
           <figure>
-            <img src="images/img_2.jpg" alt="Image" class="img-fluid">
+            <img src="{{ $post->main_img_path }}" alt="Image" class="img-fluid">
             <figcaption>{{ $post->title }}</figcaption>
           </figure>
 
@@ -22,42 +44,51 @@
           <h3><a href="{{ route('posts.show', $post->title) }}">{{ $post->title }}</a></h3>
 
           <div class="lh-content">
-            <p>{{ $post->code }}</p>
-            <span class="category">{{ $post->category->name }}</span>
-            <a href="javascript:void(0)" onclick="favourite()" id="favouriting" class="bookmark">
-              <span class="{{ $post->favourite ? "icon-heart" : "icon-heart-o" }}"></span>
-            </a>
-            <a href="javascript:void(0)" class="report bookmark"><span class="icon-report" onclick="reportPost()"></span></a>
-            <p>مشاهدات: {{ $views }}, {{ $post->ad_sort }} , {{ $post->price_sort }} , {{ $post->payment_sort }}</p>
-            <p>{{ number_format($post->price, 2, '.', '') }}</p>
-            <p>{{ $post->user->name }}</p>
-            <p>{{ $post->create_at }}</p>
-            <p>{{ $post->update_at }}</p>
-            <address>{{ $post->area->name }}, {{ $post->areaName[0] }},  {{ $post->areaName[1] }}</address>
-            <span class="icon-thumbs-o-up" onclick="like()"></span> <div id="likes">{{ count($post->likes) }}</div>
-            <span class="icon-thumbs-o-down" onclick="dislike()"></span> <div id="dislikes">{{ count($post->dislikes) }}</div>
-            {!! Share::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram() !!}
-  
+            <div class="row">
+                <div class="col-md-3"><p>{{ $post->code }}</p></div>
+                <div class="col-md-3"><span class="category">{{ $post->category->name }}</span></div>
+                <div class="col-md-3"><span class="icon-eye"></span>{{ count($post->views) }}</div>
+                <div class="col-md-3"><span class="icon-attach_money"></span>{{ number_format($post->price, 2, '.', '') }}</div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4"><p style="font-size:12px;font-weight:bold;"><span class="icon-flag-o"></span> &nbsp; {{ $post->ad_sort }} &nbsp;</p></div>
+                <div class="col-md-4"><p style="font-size:12px;font-weight:bold;"><span class="icon-hand-o-left"></span> &nbsp; {{ $post->price_sort }} &nbsp;</p></div>
+                <div class="col-md-4"><p style="font-size:12px;font-weight:bold;"><span class="icon-money"></span> &nbsp; {{ $post->payment_sort }} &nbsp;</p></div>
+            </div>  
+            <hr>
+         
+            <div class="row">
+                <div class="col-md-6"><p style="font-size:16px;"><span class="icon-user"></span>{{ $post->user->name }}</p></div>
+                <div class="col-md-6"><address style="font-size:13.5px;font-weight:bold;"><span class="icon-room"></span>{{ $post->area->name }}, {{ $post->areaName[0] }},  {{ $post->areaName[1] }}</address></div>
+            </div>
+           
+            <div class="row">
+                <div class="col-md-4"><span class="icon-clock-o"></span>{{ $post->create_at }}</div>
+                <div class="col-md-4"><span class="icon-clock-o"></span>{{ $post->update_at }}</div>
+                <div class="row col-md-4 the-likes">
+                    <span class="icon-thumbs-o-up" onclick="like()"></span> &nbsp;&nbsp; <div id="likes">{{ count($post->likes) }}</div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="icon-thumbs-o-down" onclick="dislike()"></span> &nbsp;&nbsp; <div id="dislikes">{{ count($post->dislikes) }}</div>
+                </div>
+            </div>       
+            <hr>
         </div>
 
           {{ $post->body }}
 
 
-          <div class="pt-5">
-            <p>الخدمات: 
-                @foreach ($post->allServices as $service)
-                    <a href="#">#{{ $service }}</a>
-                @endforeach
-            </p>
+          
 
-            <p>الوسوم: 
-                @foreach ($post->allTags as $tag)
-                    <a href="#">#{{ $tag }}</a>
-                @endforeach
-            </p>
 
+          <div class="row">
+            <a href="javascript:void(0)" onclick="favourite()" id="favouriting" class="bookmark col-md-6 text-center">
+                <span class="{{ $post->favourite ? "icon-heart" : "icon-heart-o" }}"></span>
+            </a>
+            <a href="javascript:void(0)" class="report bookmark col-md-6 text-center"><span class="icon-report" onclick="reportPost()"></span></a>
           </div>
-
+          <hr>
+          {!! Share::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram() !!}
 
           @include('main.posts.includes.show.comments')
 
