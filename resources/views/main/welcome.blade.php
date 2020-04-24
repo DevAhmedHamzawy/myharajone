@@ -56,7 +56,7 @@
                 <div class="col-lg-12 mb-4 mb-xl-0 col-xl-3">
                   <div class="select-wrap">
                     <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                    <select class="form-control rounded" name="main_category" onchange="getChildren(this)">
+                    <select class="form-control rounded" onchange="getChildren(this)">
                       <option value="">التصنيفات</option>
                       @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -162,7 +162,7 @@
               
           
           <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-3">
-            <a href="#" class="popular-category h-100">
+            <a href="{{ route('categories.show', $category->name) }}" class="popular-category h-100">
               <span class="icon"><span class="{{ $category->icon }}"></span></span>
               <span class="caption mb-2 d-block">{{ $category->name }}</span>
               <span class="number">{{ $category->views }}</span>

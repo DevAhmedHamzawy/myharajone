@@ -34,9 +34,26 @@
                 </li>
                 <li class="mr-5"><a href="#">تواصل معنا</a></li>
 
-                <li class="ml-xl-3 login"><a href="{{ url('/login') }}"><span class="border-left pl-xl-4"></span>دخول</a></li>
+                @guest
+                  <li class="ml-xl-3 login"><a href="{{ url('/login') }}"><span class="border-left pl-xl-4"></span>دخول</a></li>
+                  <li><a href="{{ url('/register') }}" class="cta"><span class="bg-primary text-white rounded">تسجيل</span></a></li>      
+                @endguest
 
-                <li><a href="{{ url('/register') }}" class="cta"><span class="bg-primary text-white rounded">تسجيل</span></a></li>
+                @auth
+
+                  <li class="has-children">
+                    <span class="border-left pl-xl-4"></span>
+                    <a href="{{ url('home') }}">{{ auth()->user()->name }}</a>
+                    <ul class="dropdown">
+                      <li><a href="#">شروط الإستخدام</a></li>
+                      <li><a href="#">العضويات</a></li>
+                      <li><a href="#">تطبيق الجوال</a></li>
+                      <li><a href="#">القائمة السوداء</a></li>
+                    </ul>
+                  </li>
+                    
+                @endauth
+              
               </ul>
             </nav>
           </div>

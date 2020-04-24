@@ -17,12 +17,17 @@ class PostController extends Controller
      */
     public function index()
     {
+        // Illusion Category Object
+        $category = new Category;
+        $category->parent_id = null;
+
         $posts = Post::inRandomOrder()->paginate(6);
         foreach ($posts as $post) {
             $post->areaName = Post::getMainArea($post->area_id);
+            $post->views = views($post)->unique()->count();
         }
         $mainCategories = Category::whereParentId(null)->get();
-        return view('main.posts.index', ['posts' => $posts, 'views' => views($post)->unique()->count(), 'mainCategories' => $mainCategories]);
+        return view('main.posts.index', ['posts' => $posts, 'category' => $category, 'mainCategories' => $mainCategories, 'childrenCategories' => [], 'childrenCategoriesOne' => [], 'adSorts' => Post::getPossibleEnumValues('ad_sort'), 'priceSorts' => Post::getPossibleEnumValues('price_sort'), 'paymentSorts' => Post::getPossibleEnumValues('payment_sort'), 'destinations' => EstatePost::getPossibleEnumValues('destination'), 'sorts' => EstatePost::getPossibleEnumValues('sort'), 'contracts' => EstatePost::getPossibleEnumValues('contract')]);
     }
 
     /**

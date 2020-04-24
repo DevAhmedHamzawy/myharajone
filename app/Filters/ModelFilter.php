@@ -4,14 +4,14 @@ namespace App\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class DestinationFilter implements Filter
+class ModelFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
         if($value !== null){
-            return $builder->whereHas('estatePost', function($q) use ($value){
-                $q->where('destination' , $value);
+            return $builder->whereHas('carPost', function($q) use ($value){
+                $q->where('model' , $value);
             });
-        }
+        }    
     }
 }

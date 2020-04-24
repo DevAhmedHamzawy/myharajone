@@ -73,3 +73,5 @@ Route::post('reportpost', 'ReportController@store');
  Route::post('blacklist' , 'BlacklistController@show')->name('blacklist.show');
 
  Route::post('results' , 'SearchController@welcomeSearch')->name('welcome-search');
+
+ Route::resource('categories' , 'CategoryController');

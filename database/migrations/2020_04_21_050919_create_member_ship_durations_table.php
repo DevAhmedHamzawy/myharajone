@@ -17,7 +17,7 @@ class CreateMemberShipDurationsTable extends Migration
             $table->id();
             $table->integer('membership_id');
             $table->integer('duration');
-            $table->decimal('price', 10,7);
+            $table->decimal('price', 10,2);
             $table->timestamps();
         });
     }

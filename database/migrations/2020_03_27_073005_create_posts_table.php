@@ -31,7 +31,7 @@ class CreatePostsTable extends Migration
             $table->enum('show_contact_email', ['نعم','لا']);
             $table->integer('position');
             $table->enum('visible', ['نعم','لا']);
-            $table->decimal('price', 10,7);
+            $table->decimal('price', 10,2);
             $table->enum('ad_sort', ['للبيع','للإيجار','مهم','مطلوب عاجل','للإستثمار']);
             $table->enum('price_sort', ['اخرى','تعامل مباشر','غير قابل للتفاوض','على السوم','قابل للتفاوض']);
             $table->enum('payment_sort', ['نقداً','أقساط شهرية','على دفعات','شيك مصدق','أخرى']);

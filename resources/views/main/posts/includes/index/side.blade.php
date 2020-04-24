@@ -1,11 +1,11 @@
-<div class="col-lg-3 ml-auto">
+<div class="col-lg-3 mr-auto">
 
     <div class="mb-5">
-      <h3 class="h5 text-black mb-3">Filters</h3>
+      <h3 class="h5 text-black mb-3">البحث</h3>
       <form action="#" method="post">
         @csrf
         <div class="form-group">
-          <input type="text" onchange="search()" id="title" placeholder="What are you looking for?" class="form-control">
+          <input type="text" onchange="search()" id="title" placeholder="عن ماذا تبحث؟" class="form-control">
         </div>
         <div class="form-group">
           <div class="select-wrap">
@@ -30,6 +30,54 @@
               <select class="form-control" class="category" onchange="search()"></select> --}}
             </div>
         </div>
+
+        <div class="form-group">
+          <div class="select-wrap sub-category-two">
+            {{--   <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+              <select class="form-control" class="category" onchange="search()"></select> --}}
+            </div>
+        </div>
+
+        <div class="estates-posts-filter-show" style="display:none">
+
+          <div class="form-group">
+            <div class="select-wrap">
+              <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+              <select id="destination" class="form-control" onchange="search()">
+                <option value="" selected disabled>واجهة العقار</option>
+                @foreach ($destinations as $destination)
+                  <option>{{ $destination }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="select-wrap">
+              <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+              <select id="sort" class="form-control" onchange="search()">
+                <option value="" selected disabled>نوع العقار</option>
+                @foreach ($sorts as $sort)
+                    <option>{{ $sort }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="select-wrap">
+              <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+              <select id="contract" class="form-control" onchange="search()">
+                <option value="" selected disabled>نوع العقد</option>
+                @foreach ($contracts as $contract)
+                    <option>{{ $contract }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+
+        </div>
+
         <div class="form-group">
           <!-- select-wrap, .wrap-icon -->
           <div class="select-wrap">
@@ -57,65 +105,66 @@
           <div class="select-wrap">
 
           <span class="icon icon-room"></span>
-          <select class="form-control" id="area_id"></select>
+          <select class="form-control" id="area_id" onchange="search()"></select>
 
           </div>
         </div>
 
+        
+          <div class="form-group">
+            <div class="select-wrap">
+              <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+              <select id="price_sort" class="form-control" onchange="search()">
+                <option selected disabled>نوع السعر</option>
+                @foreach ($priceSorts as $sort)
+                    <option>{{ $sort }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="select-wrap">
+              <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+              <select id="ad_sort" class="form-control" onchange="search()">
+                <option selected disabled>نوع الإعلان</option>
+                @foreach ($adSorts as $sort)
+                    <option>{{ $sort }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="select-wrap">
+              <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+              <select id="payment_sort" class="form-control" onchange="search()">
+                <option selected disabled>نوع الدفع</option>
+                  @foreach ($paymentSorts as $sort)
+                      <option>{{ $sort }}</option>
+                  @endforeach
+              </select>
+            </div>
+          </div>
+
+
+          <div class="mb-5">
+            <div class="form-group">
+              <p>الســـعـــر</p>
+            </div>
+            <div class="form-group" dir="ltr">
+              <input type="range" id="price" min="0" max="10000" onchange="search()" value="5000" data-rangeslider>
+            </div>
+          </div>
+        
+
       </form>
     </div>
     
-    <div class="mb-5">
-      <form action="#" method="post">
-        <div class="form-group">
-          <p>Radius around selected destination</p>
-        </div>
-        <div class="form-group">
-          <input type="range" min="0" max="100" value="20" data-rangeslider>
-        </div>
-      </form>
-    </div>
+    
 
-    <div class="mb-5">
-      <form action="#" method="post">
-        <div class="form-group">
-          <p>Category 'Real Estate' is selected</p>
-          <p>More filters</p>
-        </div>
-        <div class="form-group">
-          <ul class="list-unstyled">
-            <li>
-              <label for="option1">
-                <input type="checkbox" id="option1">
-                Residential
-              </label>
-            </li>
-            <li>
-              <label for="option2">
-                <input type="checkbox" id="option2">
-                Commercial
-              </label>
-            </li>
-            <li>
-              <label for="option3">
-                <input type="checkbox" id="option3">
-                Industrial
-              </label>
-            </li>
-            <li>
-              <label for="option4">
-                <input type="checkbox" id="option4">
-                Land
-              </label>
-            </li>
-          </ul>
-        </div>
-      </form>
-    </div>
+   
 
-    <div class="mb-5">
-      <h3 class="h6 mb-3">More Info</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatem placeat facilis, reprehenderit eius officiis.</p>
-    </div>
+   
 
   </div>

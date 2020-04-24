@@ -10,6 +10,11 @@ class Category extends Model implements Viewable
 {
     use InteractsWithViews;
 
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
     public static function getChildrenCategories($id)
     {
         return self::whereParentId($id)->get();

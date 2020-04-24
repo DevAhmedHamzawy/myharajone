@@ -105,8 +105,11 @@ function getChildren(id)
 
             if(id.value == 2){
                 $('.post-estate-map').css("display", "block");
+                $('.estates-posts-filter-show').css("display", "block");
+
             }else{
                 $('.post-estate-map').css("display", "none");
+                $('.estates-posts-filter-show').css("display", "none");
             }
 
             for (const subcategory of response.data) {

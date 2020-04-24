@@ -1727,7 +1727,7 @@ h1, h2, h3, h4, h5,
 .range-output {
   font-weight: bold; }
   .range-output:after {
-    content: "Km";
+    /*content: "Km";*/
     font-weight: normal; }
 
 .overlap-category {

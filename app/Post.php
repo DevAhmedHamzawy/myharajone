@@ -68,6 +68,16 @@ class Post extends Model implements Viewable
         return $this->hasMany('App\Report');
     }
 
+    public function estatePost()
+    {
+        return $this->hasOne('App\EstatePost');
+    }
+
+    public function carPost()
+    {
+        return $this->hasOne('App\CarPost');
+    }
+
     public function getcreateAtAttribute()
     {
         return $this->created_at->diffForHumans();
@@ -104,8 +114,8 @@ class Post extends Model implements Viewable
     {
         $area = Area::where('id', $id)->first();
         $secondArea = Area::where('id', $area->parent_id)->first() ?? 'غير محدد';
-        $mainArea = Area::where('id', $secondArea->parent_id)->first() ?? 'غير محدد';
-        return [$secondArea->name, $mainArea->name];
+        if($secondArea != 'غير محدد'){ $mainArea = Area::where('id', $secondArea->parent_id)->first() ?? 'غير محدد'; }
+        return [$secondArea->name ?? 'غير محدد', $mainArea->name ?? 'غير محدد'];
     }
 
     public static function scopeFilter(Builder $builder, $filters)

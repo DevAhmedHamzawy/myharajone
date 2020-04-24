@@ -1,4 +1,4 @@
-<div class="row posts-listings">
+<div class="row">
 
     @forelse ($posts as $post)
     <div class="col-lg-6">
