@@ -37,6 +37,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $with = ['posts','likes','dislikes','profile'];
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 
     public function posts()
     {
@@ -56,5 +62,10 @@ class User extends Authenticatable
     public function dislikes()
     {
         return $this->hasMany('App\Like', 'seller_id')->whereLike(-1);
+    }
+
+    public function profile()
+    {
+        return $this->hasOne('App\Profile');
     }
 }

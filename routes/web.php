@@ -75,3 +75,5 @@ Route::post('reportpost', 'ReportController@store');
  Route::post('results' , 'SearchController@welcomeSearch')->name('welcome-search');
 
  Route::resource('categories' , 'CategoryController');
+
+ Route::get('users/{user}' , 'ProfileController@show')->name('user.profile');
