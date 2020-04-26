@@ -11,6 +11,6 @@ class Admin extends Authenticatable
 
     public function getRouteKeyName()
     {
-        return 'name';
+        return 'user_name';
     }
 } 

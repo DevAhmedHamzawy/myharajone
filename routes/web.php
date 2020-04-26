@@ -25,6 +25,12 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
         dd(auth()->user());
     });
 
+    Route::resource('users', 'Admin\UserController');
+    Route::resource('admins', 'Admin\AdminController');
+    Route::resource('contacts', 'Admin\ContactController');       
+    Route::resource('newsletters', 'Admin\NewsLetterController');       
+
+
 });
 
 
@@ -77,3 +83,9 @@ Route::post('reportpost', 'ReportController@store');
  Route::resource('categories' , 'CategoryController');
 
  Route::get('users/{user}' , 'ProfileController@show')->name('user.profile');
+
+ Route::get('contact-us', 'ContactController@show')->name('contact-us');
+ Route::post('sendcontact', 'ContactController@store');
+
+//NewsLetter
+Route::post('savenewsletter', 'NewsLetterController@store');

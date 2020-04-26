@@ -32,7 +32,7 @@
                     <li><a href="#">القائمة السوداء</a></li>
                   </ul>
                 </li>
-                <li class="mr-5"><a href="#">تواصل معنا</a></li>
+                <li class="mr-5"><a href="{{ route('contact-us') }}">تواصل معنا</a></li>
 
                 @guest
                   <li class="ml-xl-3 login"><a href="{{ url('/login') }}"><span class="border-left pl-xl-4"></span>دخول</a></li>

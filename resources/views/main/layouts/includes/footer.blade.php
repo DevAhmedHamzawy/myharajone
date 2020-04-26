@@ -6,10 +6,11 @@
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="col-md-6">
-          
+          <div id="success-message-footer"></div>
           <form class="d-flex">
-            <input type="text" class="form-control" placeholder="Email">
-            <input type="submit" value="Subscribe" class="btn btn-white"> 
+            <input type="text" id="email-newsletter-footer" class="form-control" placeholder="Email">
+            <span class="email-newsletter-footer-error invalid-feedback" role="alert"></span> 
+            <input type="submit" onclick="subscribefooter();return false;" value="Subscribe" class="btn btn-white">
           </form>
         </div>
       </div>
@@ -151,4 +152,39 @@ function getChildren(id)
             console.log(error);
           });
       }
+
+      function subscribefooter(){
+    //console.log('subscribefooter');
+
+    let newsletter = {
+        email: $('#email-newsletter-footer').val(),
+    }
+
+    axios.post('../../savenewsletter', newsletter)
+      .then((data) => {
+
+          
+            $('#email-newsletter-footer').val("");
+
+            $('.email-newsletter-footer-error').empty();
+
+            $('#success-message-footer').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإشتراك!</strong>تم الإشتراك فى النشرة التسويقية !</div></div>');
+            setTimeout(() => {
+                $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove() 
+                });
+            }, 2000);
+        }).catch((error) => {
+               
+                $('.email-newsletter-footer-error').empty();
+
+               
+             
+                if(error.response.data.errors.email){
+                    $('.email-newsletter-footer-error').append('<strong>'+error.response.data.errors.email+'</strong>');
+                    $('.email-newsletter').addClass('is-invalid')
+                }
+
+        });
+}
 </script>
