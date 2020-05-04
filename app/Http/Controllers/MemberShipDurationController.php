@@ -12,9 +12,9 @@ class MemberShipDurationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        return MemberShipDuration::whereMembershipId($id)->get();
     }
 
     /**
@@ -46,7 +46,6 @@ class MemberShipDurationController extends Controller
      */
     public function show(MemberShipDuration $memberShipDuration)
     {
-        //
     }
 
     /**

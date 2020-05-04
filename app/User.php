@@ -68,4 +68,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Profile');
     }
+
+    public function premium()
+    {
+        return $this->hasOne('App\UserPremium');
+    }
 }

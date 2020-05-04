@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\BankAccount;
+use App\MemberShip;
 use App\UserPremium;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,7 @@ class UserPremiumController extends Controller
      */
     public function create()
     {
-        //
+        return view('main.home.membership', ['memberships' => MemberShip::all(), 'bankaccounts' => BankAccount::all()]);
     }
 
     /**
@@ -35,7 +37,7 @@ class UserPremiumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        auth()->user()->premium()->create($request->all());
     }
 
     /**

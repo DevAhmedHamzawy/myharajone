@@ -4,14 +4,21 @@
 
 @include('main.posts.includes.show.cover')
 
-<form action="{{ route('memberships.store') }}" method="post" class="p-5 bg-white">
+<form action="{{ route('userpremiums.store') }}" method="post" class="p-5 bg-white">
     @csrf
 
-    <select name="membership_id" id="membership_id">
-        @foreach ($memberships as $membership)
-            <option value="{{ $membership->id }}">{{ $membership->name }}</option>
-        @endforeach
-    </select>
+    <div class="row form-group">
+        <select name="membership_id" id="membership_id" onchange="getDurations(this)" class="form-control">
+            @foreach ($memberships as $membership)
+                <option value="{{ $membership->id }}">{{ $membership->name }}</option>
+            @endforeach
+        </select>
+    </div>
+   
+
+    <div class="row form-group durations">
+       
+    </div>
 
     <div class="row form-group">       
         <div class="col-md-12">
@@ -33,7 +40,7 @@
 
     <div class="row form-group">       
         <div class="col-md-12">
-            <select name="bankaccount_id" id="bankaccount_id">
+            <select name="bankaccount_id" id="bankaccount_id" class="form-control">
                 @foreach ($bankaccounts as $bankaccount)
                     <option value="{{ $bankaccount->id }}">{{ $bankaccount->name }}</option>
                 @endforeach
@@ -49,7 +56,7 @@
 
     <div class="row form-group">       
         <div class="col-md-12">
-            <textarea name="notes" id="notes" cols="30" rows="10" placeholder="ملاحظات..."></textarea>
+            <textarea name="notes" id="notes" cols="30" rows="10" class="form-control" placeholder="ملاحظات..."></textarea>
         </div>
     </div>
 
@@ -62,12 +69,14 @@
 
 @section('footer')
     <script>
-        function getChildren(id)
+        function getDurations(id)
       {
-        axios.get(`../category_children/${id.value}`)
+        axios.get(`../membership_durations/${id.value}`)
         .then(function (response) {
             $('.durations').empty();
-            $('.durations').append('<select name="duration" id="duration"></select>');
+            $('.durations').append('<div class="row form-group"><div class="col-md-12">');
+            $('.durations').append('<select name="duration_id" class="duration form-control"></select>');
+            $('.durations').append('</div></div>');
            
 
             for (const duration of response.data) {
