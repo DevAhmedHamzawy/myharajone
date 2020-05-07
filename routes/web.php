@@ -30,6 +30,10 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
     Route::resource('contacts', 'Admin\ContactController');       
     Route::resource('newsletters', 'Admin\NewsLetterController');       
 
+    Route::resource('memberships', 'Admin\MemberShipController');       
+    Route::resource('membershipdurations', 'Admin\MemberShipDurationController');       
+    Route::resource('bankaccounts', 'Admin\BankAccountController');       
+
 
 });
 
