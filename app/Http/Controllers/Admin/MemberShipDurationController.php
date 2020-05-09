@@ -38,6 +38,7 @@ class MemberShipDurationController extends Controller
     public function store(Request $request)
     {
         MemberShipDuration::create($request->except('_token'));
+        return redirect('admin/membershipdurations');
     }
 
     /**

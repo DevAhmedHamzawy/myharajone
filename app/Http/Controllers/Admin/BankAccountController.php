@@ -15,7 +15,7 @@ class BankAccountController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.bankaccounts.index', ['bankaccounts' => BankAccount::all()]);
     }
 
     /**
@@ -37,6 +37,7 @@ class BankAccountController extends Controller
     public function store(Request $request)
     {
         BankAccount::create($request->except('_token'));
+        return redirect('admin/bankaccounts');
     }
 
     /**
