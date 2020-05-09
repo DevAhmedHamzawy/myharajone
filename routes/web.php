@@ -34,6 +34,10 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
     Route::resource('membershipdurations', 'Admin\MemberShipDurationController');       
     Route::resource('bankaccounts', 'Admin\BankAccountController');       
 
+    Route::resource('reports', 'Admin\ReportController');
+    Route::resource('the-posts', 'Admin\PostController')->only('index');
+    Route::get('posts/{post}', 'Admin\PostController@destroy')->name('the-posts.delete');
+
 
 });
 

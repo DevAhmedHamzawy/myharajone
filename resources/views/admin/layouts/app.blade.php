@@ -117,14 +117,15 @@
             <div class="sidebar">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a href="{{ url('admin/dashboard') }}" class="nav-link px-2"><i class="material-icons icon">dashboard</i><span class="text">لوحة التحكم</span></a></li>
-                    <li class="nav-item"><a href="{{ url('admin/estates') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">عقارات الموقع</span></a></li>
-                    <li class="nav-item"><a href="{{ url('admin/reports') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">البلاغات عن العقارات</span></a></li>
-                    <li class="nav-item"><a href="{{ url('admin/offices') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">المكاتب العقارية</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/the-posts') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">إعلانات الموقع</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/reports') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">البلاغات عن الإعلانات</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/contacts') }}" class="nav-link px-2"><i class="material-icons icon">accessibility</i><span class="text">رسائل تواصل معنا</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/newsletters') }}" class="nav-link px-2"><i class="material-icons icon">account_box</i><span class="text">النشرة التسويقية البريدية</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/admins') }}" class="nav-link px-2"><i class="material-icons icon">face</i><span class="text">المديرين</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/users') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">المستخدمين</span></a></li>
-                    <li class="nav-item"><a href="{{ url('admin/lawyers') }}" class="nav-link px-2"><i class="material-icons icon">collections</i><span class="text">المحامين</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/memberships') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">العضويات</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/membershipdurations') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">مدة العضويات</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/bankaccounts') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">الحسابات البنكية</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/settings/index/1') }}" class="nav-link px-2"><i class="material-icons icon">account_circle</i><span class="text">إعدادات الموقع</span></a></li>
                     <li class="nav-item"><a href="#" class="nav-link sideMenuToggler px-2"><span class="text">ex</span><i class="material-icons icon">ex</i></a></li>
                 </ul>

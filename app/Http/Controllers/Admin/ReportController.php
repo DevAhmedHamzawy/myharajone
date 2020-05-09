@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Estate;
+use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DataTables;
@@ -19,14 +19,14 @@ class ReportController extends Controller
 
         if ($request->ajax()) {
 
-        $estates = Estate::withCount(['likes', 'favourites', 'dislikes', 'reports'])->orderByDesc('reports_count')->get();
+        $posts = Post::withCount(['likes', 'favourites', 'dislikes', 'reports'])->orderByDesc('reports_count')->get();
         
-        return Datatables::of($estates)->addIndexColumn()
+        return Datatables::of($posts)->addIndexColumn()
         ->addColumn('action', function($row){
 
-                $btn = '<a href="'.route("estates.show", [$row->ad_sort_id, $row->name]).'" target="_blank" class="edit btn btn-primary btn-sm">عرض</a>';
+                //$btn = '<a href="'.route("posts.show", [$row->ad_sort_id, $row->name]).'" target="_blank" class="edit btn btn-primary btn-sm">عرض</a>';
 
-                return $btn;
+                //return $btn;
         })
         ->rawColumns(['action'])
         ->make(true);
