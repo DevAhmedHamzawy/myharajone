@@ -15,7 +15,8 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('memberships.store') }}">
+                    <form method="POST" action="{{ route('memberships.update', $membership->id) }}">
+                        @method('PATCH')
                         @csrf
 
 
@@ -36,7 +37,7 @@
 
 
                         <div class="form-group row">
-                            <label for="free_commission" class="col-md-2 col-form-label text-md-right">الإسم الأول</label>
+                            <label for="free_commission" class="col-md-2 col-form-label text-md-right">إعفاء من العمولة</label>
 
                             <div class="col-md-10">
                                 <label for="no" class="col-md-2 col-form-label text-md-right">لا</label>
@@ -53,7 +54,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="max_posts" class="col-md-2 col-form-label text-md-right">الإسم الأخير</label>
+                            <label for="max_posts" class="col-md-2 col-form-label text-md-right">أقصى عدد للإعلانات</label>
 
                             <div class="col-md-10">
                                 <input id="max_posts" type="number" class="form-control @error('max_posts') is-invalid @enderror" name="max_posts" value="{{ $membership->max_posts }}" required autocomplete="max_posts" autofocus>
@@ -85,7 +86,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="feature_ads" class="col-md-2 col-form-label text-md-right">البريد الإلكترونى</label>
+                            <label for="feature_ads" class="col-md-2 col-form-label text-md-right">الإعلانات المميزة</label>
 
                             <div class="col-md-10">
                                 <label for="no" class="col-md-2 col-form-label text-md-right">لا</label>
@@ -104,7 +105,7 @@
 
                         <div class="form-group row mb-0">
                             <button type="submit" class="btn btn-primary col-md-12">
-                                إضافة عضوية جديد
+                                التعديل على العضوية
                             </button>
                         </div>
                     </form>

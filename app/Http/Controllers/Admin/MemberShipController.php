@@ -37,50 +37,42 @@ class MemberShipController extends Controller
     public function store(Request $request)
     {
         MemberShip::create($request->except('_token'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\MemberShip  $memberShip
-     * @return \Illuminate\Http\Response
-     */
-    public function show(MemberShip $memberShip)
-    {
-        //
+        return redirect('admin/memberships');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\MemberShip  $memberShip
+     * @param  \App\MemberShip  $membership
      * @return \Illuminate\Http\Response
      */
-    public function edit(MemberShip $memberShip)
+    public function edit(MemberShip $membership)
     {
-        //
+        return view('admin.memberships.edit' , compact('membership'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MemberShip  $memberShip
+     * @param  \App\MemberShip  $membership
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MemberShip $memberShip)
+    public function update(Request $request, MemberShip $membership)
     {
-        //
+        $membership->update($request->except('_token'));
+        return redirect('admin/memberships');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\MemberShip  $memberShip
+     * @param  \App\MemberShip  $membership
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MemberShip $memberShip)
+    public function destroy(MemberShip $membership)
     {
-        //
+        $membership->delete();
+        return redirect('admin/memberships');
     }
 }

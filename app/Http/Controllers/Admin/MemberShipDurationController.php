@@ -44,10 +44,10 @@ class MemberShipDurationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\MemberShipDuration  $memberShipDuration
+     * @param  \App\MemberShipDuration  $membershipduration
      * @return \Illuminate\Http\Response
      */
-    public function show(MemberShipDuration $memberShipDuration)
+    public function show(MemberShipDuration $membershipduration)
     {
         //
     }
@@ -55,34 +55,37 @@ class MemberShipDurationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\MemberShipDuration  $memberShipDuration
+     * @param  \App\MemberShipDuration  $membershipduration
      * @return \Illuminate\Http\Response
      */
-    public function edit(MemberShipDuration $memberShipDuration)
+    public function edit(MemberShipDuration $membershipduration)
     {
-        //
+        $memberships = MemberShip::all();
+        return view('admin.membershipdurations.edit', compact('membershipduration','memberships'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MemberShipDuration  $memberShipDuration
+     * @param  \App\MemberShipDuration  $membershipduration
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MemberShipDuration $memberShipDuration)
+    public function update(Request $request, MemberShipDuration $membershipduration)
     {
-        //
+        $membershipduration->update($request->except('_token'));
+        return redirect('admin/membershipdurations');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\MemberShipDuration  $memberShipDuration
+     * @param  \App\MemberShipDuration  $membershipduration
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MemberShipDuration $memberShipDuration)
+    public function destroy(MemberShipDuration $membershipduration)
     {
-        //
+        $membershipduration->delete();
+        return redirect('admin/membershipdurations');
     }
 }

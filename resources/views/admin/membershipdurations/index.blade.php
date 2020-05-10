@@ -6,8 +6,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    مستخدمين الموقع
-                    <a href="{{ route('membershipdurations.create') }}" class="btn btn-primary" style="float:left">إضافة مستخدم جديد</a>
+                    مدة العضويات 
+                    <a href="{{ route('membershipdurations.create') }}" class="btn btn-primary" style="float:left">إضافة مدة جديدة</a>
                 </div>
 
                 <div class="card-body">
@@ -22,8 +22,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">الإسم</th>
-                                    <th scope="col">البريد الإلكترونى</th>
+                                    <th scope="col">إسم العضوية</th>
+                                    <th scope="col">المدة</th>
+                                    <th scope="col">العدد</th>
+                                    <th scope="col">السعر</th>
                                     <th scope="col">العمليات</th>
                                 </tr>
                             </thead>
@@ -31,18 +33,20 @@
                             <tbody>
                                 <tr>
                                     <td scope="row">#</td>
-                                    <td>{{ $membershipduration->name  }}</td>
-                                    <td>{{ $membershipduration->email }}</td>
-                                    {{--<td><img src="{{ $membershipduration->img_path }}" alt="" srcset=""></td>--}}
-                                    <td class="row">
-                                        {{--<a href="{{ route('membershipdurations.show', $membershipduration->membershipduration_name) }}" class="btn btn-primary">Show</a>--}}
-                                        <a href="{{ route('membershipdurations.edit', $membershipduration->id) }}" class="btn btn-warning">تعديل</a>
-                                        &nbsp;&nbsp;
-                                        <form action="{{ route('membershipdurations.destroy', $membershipduration->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">حذف</button>
-                                        </form>
+                                    <td>{{ $membershipduration->membership->name  }}</td>
+                                    <td>{{ $membershipduration->display_name }}</td>
+                                    <td>{{ $membershipduration->duration }}</td>
+                                    <td>{{ $membershipduration->price }}</td>
+                                    <td>
+                                        <div class="row">
+                                            <a href="{{ route('membershipdurations.edit', $membershipduration->id) }}" class="btn btn-warning">تعديل</a>
+                                            &nbsp;&nbsp;
+                                            <form action="{{ route('membershipdurations.destroy', $membershipduration->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">حذف</button>
+                                            </form>
+                                        </div>          
                                     </td>
                                 </tr>
                             </tbody>

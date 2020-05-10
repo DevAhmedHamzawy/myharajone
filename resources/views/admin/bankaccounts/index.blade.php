@@ -6,8 +6,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    مستخدمين الموقع
-                    <a href="{{ route('bankaccounts.create') }}" class="btn btn-primary" style="float:left">إضافة مستخدم جديد</a>
+                    الحسابات البنكية 
+                    <a href="{{ route('bankaccounts.create') }}" class="btn btn-primary" style="float:left">إضافة حساب بنكى</a>
                 </div>
 
                 <div class="card-body">
@@ -23,7 +23,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">الإسم</th>
-                                    <th scope="col">البريد الإلكترونى</th>
+                                    <th scope="col">iban</th>
                                     <th scope="col">العمليات</th>
                                 </tr>
                             </thead>
@@ -32,12 +32,9 @@
                                 <tr>
                                     <td scope="row">#</td>
                                     <td>{{ $bankaccount->name  }}</td>
-                                    <td>{{ $bankaccount->email }}</td>
-                                    {{--<td><img src="{{ $bankaccount->img_path }}" alt="" srcset=""></td>--}}
+                                    <td>{{ $bankaccount->iban }}</td>
                                     <td>
-                                        {{--<a href="{{ route('bankaccounts.show', $bankaccount->bankaccount_name) }}" class="btn btn-primary">Show</a>--}}
-                                        <a href="{{ route('bankaccounts.edit', $bankaccount->name) }}" class="btn btn-warning">تعديل</a>
-                                        <form action="{{ route('bankaccounts.destroy', $bankaccount->name) }}" method="post">
+                                        <form action="{{ route('bankaccounts.destroy', $bankaccount->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger" type="submit">حذف</button>

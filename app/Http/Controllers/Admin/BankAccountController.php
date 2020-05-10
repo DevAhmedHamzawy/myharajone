@@ -80,8 +80,9 @@ class BankAccountController extends Controller
      * @param  \App\BankAccount  $bankAccount
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BankAccount $bankAccount)
+    public function destroy(BankAccount $bankaccount)
     {
-        //
+        $bankaccount->delete();
+        return redirect('admin/bankaccounts');
     }
 }

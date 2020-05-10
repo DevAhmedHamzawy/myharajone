@@ -36,7 +36,7 @@
 
 
                         <div class="form-group row">
-                            <label for="free_commission" class="col-md-2 col-form-label text-md-right">الإسم الأول</label>
+                            <label for="free_commission" class="col-md-2 col-form-label text-md-right">إعفاء من العمولة</label>
 
                             <div class="col-md-10">
                                 <label for="no" class="col-md-2 col-form-label text-md-right">لا</label>
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="max_posts" class="col-md-2 col-form-label text-md-right">الإسم الأخير</label>
+                            <label for="max_posts" class="col-md-2 col-form-label text-md-right">أقصى عدد إعلانات</label>
 
                             <div class="col-md-10">
                                 <input id="max_posts" type="number" class="form-control @error('max_posts') is-invalid @enderror" name="max_posts" value="{{ old('max_posts') }}" required autocomplete="max_posts" autofocus>
@@ -85,7 +85,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="feature_ads" class="col-md-2 col-form-label text-md-right">البريد الإلكترونى</label>
+                            <label for="feature_ads" class="col-md-2 col-form-label text-md-right">الإعلانات المميزة</label>
 
                             <div class="col-md-10">
                                 <label for="no" class="col-md-2 col-form-label text-md-right">لا</label>
