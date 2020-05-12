@@ -35,6 +35,7 @@ class CreatePostsTable extends Migration
             $table->enum('ad_sort', ['للبيع','للإيجار','مهم','مطلوب عاجل','للإستثمار']);
             $table->enum('price_sort', ['اخرى','تعامل مباشر','غير قابل للتفاوض','على السوم','قابل للتفاوض']);
             $table->enum('payment_sort', ['نقداً','أقساط شهرية','على دفعات','شيك مصدق','أخرى']);
+            $table->boolean('blacklist')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

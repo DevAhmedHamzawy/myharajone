@@ -39,6 +39,10 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
     Route::get('posts/{post}', 'Admin\PostController@destroy')->name('the-posts.delete');
 
 
+    Route::get('blacklist/{id}/{type}/blacklist', 'Admin\BlacklistController@blacklist')->name('the-blacklist');
+    Route::get('blacklist/{id}/{type}/unblacklist', 'Admin\BlacklistController@unblacklist')->name('the-unblacklist');
+
+
 });
 
 

@@ -54,7 +54,7 @@ $(function () {
         ajax: "{{ route('reports.index') }}",
         columns: [
             {data: 'code', name: 'code'},
-            {data: 'name', name: 'name'},
+            {data: 'title', name: 'title'},
             {data: 'user.name', name: 'user.name'},
             {data: 'likes_count', name: 'likes_count'},
             {data: 'favourites_count', name: 'favourites_count'},

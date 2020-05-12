@@ -19,16 +19,32 @@ class ReportController extends Controller
 
         if ($request->ajax()) {
 
-        $posts = Post::withCount(['likes', 'favourites', 'dislikes', 'reports'])->orderByDesc('reports_count')->get();
+        $posts = Post::withCount(['likes', 'favourites', 'dislikes', 'reports'])->with('user')->orderByDesc('reports_count')->get();
         
         return Datatables::of($posts)->addIndexColumn()
-        ->addColumn('action', function($row){
+        ->addColumn('show', function($row){
 
-                //$btn = '<a href="'.route("posts.show", [$row->ad_sort_id, $row->name]).'" target="_blank" class="edit btn btn-primary btn-sm">عرض</a>';
+            $btn = '<a href="'.route("posts.show", $row->title).'" target="_blank" class="edit btn btn-primary btn-sm">عرض</a>';
 
-                //return $btn;
+            return $btn;
         })
-        ->rawColumns(['action'])
+        ->addColumn('blacklist', function($row){
+
+            if($row->blacklist == 0){
+                $btn = '<a href="'.route("the-blacklist", [$row->id,'post']).'"  class="btn btn-warning btn-sm">حظر</a>';
+            }else{
+                $btn = '<a href="'.route("the-unblacklist", [$row->id,'post']).'"  class="btn btn-warning btn-sm">فك الحظر</a>';
+            }
+
+            return $btn;
+        })
+        ->addColumn('delete', function($row){
+
+            $btn = '<a href="'.route("the-posts.delete", $row->title).'"  class="btn btn-danger btn-sm">حذف</a>';
+
+            return $btn;
+        })
+        ->rawColumns(['show','blacklist','delete'])
         ->make(true);
 
         }

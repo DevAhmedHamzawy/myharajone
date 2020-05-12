@@ -34,9 +34,9 @@ class PostController extends Controller
         return DataTables::of($posts)->addIndexColumn()
         ->addColumn('action', function($row){
 
-               //$btn = '<a href="'.route("posts.show", [$row->ad_sort_id, $row->name]).'" target="_blank" class="edit btn btn-primary btn-sm">عرض</a>';
+               $btn = '<a href="'.route("posts.show", $row->title).'" target="_blank" class="edit btn btn-primary btn-sm">عرض</a>';
 
-               //return $btn;
+               return $btn;
         })
         ->rawColumns(['action'])
         ->make(true);
