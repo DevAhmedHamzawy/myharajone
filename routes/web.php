@@ -46,7 +46,7 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
 });
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
 //After User Authenticated & Verified
