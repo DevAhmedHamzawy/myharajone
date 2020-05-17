@@ -85,7 +85,7 @@
         {{ auth()->user()->premium->ended == 1 ? 'العضوية إنتهت .... رجاء التجديد' : auth()->user()->premium }}
     @else
         لم تقم بتسجيل عضوية
-        <button class="col-md-12 btn btn-primary"><a href="{{ route('userpremiums.create') }}">تـــســـجـــيـــل الـــعـــضـــويــــــة</a></button>
+        <button class="col-md-12 btn btn-primary text-white"><a href="{{ route('userpremiums.create') }}" class="text-white">تـــســـجـــيـــل الـــعـــضـــويــــــة</a></button>
     @endif
 </div>
 

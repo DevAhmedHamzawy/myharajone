@@ -15,6 +15,7 @@ use App\Filters\PriceSortFilter;
 use App\Filters\SortFilter;
 use App\Filters\TitleFilter;
 use App\Post;
+use App\EstatePost;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -37,6 +38,10 @@ class SearchController extends Controller
 
     public function welcomeSearch(Request $request)
     {
+        // Illusion Category Object
+        $category = new Category;
+        $category->parent_id = null;
+
         //dd($request->all());
         $posts = Post::filter($this->filters())->paginate(6);
         foreach ($posts as $post) {
@@ -45,7 +50,7 @@ class SearchController extends Controller
         }
         $mainCategories = Category::whereParentId(null)->get();
         //'adSorts' => Post::getPossibleEnumValues('ad_sort'), 'priceSorts' => Post::getPossibleEnumValues('price_sort'), 'paymentSorts' => Post::getPossibleEnumValues('payment_sort'), 'destinations' => EstatePost::getPossibleEnumValues('destination'), 'sorts' => EstatePost::getPossibleEnumValues('sort'), 'contracts' => EstatePost::getPossibleEnumValues('contract')
-        return view('main.posts.index', compact('posts','mainCategories'));
+        return view('main.posts.index', ['posts' => $posts, 'category' => $category, 'mainCategories' => $mainCategories, 'childrenCategories' => [], 'childrenCategoriesOne' => [], 'adSorts' => Post::getPossibleEnumValues('ad_sort'), 'priceSorts' => Post::getPossibleEnumValues('price_sort'), 'paymentSorts' => Post::getPossibleEnumValues('payment_sort'), 'destinations' => EstatePost::getPossibleEnumValues('destination'), 'sorts' => EstatePost::getPossibleEnumValues('sort'), 'contracts' => EstatePost::getPossibleEnumValues('contract')]);
     }
 
     protected function filters()

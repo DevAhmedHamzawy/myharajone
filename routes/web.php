@@ -49,8 +49,8 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
 Auth::routes(['verify' => true]);
 
 
-//After User Authenticated & Verified
-Route::group(['middleware' => 'verified'], function (){
+//After User Authenticated
+Route::group(['middleware' => 'web'], function (){
 
     Route::get('/home', 'HomeController@index')->name('home');
 

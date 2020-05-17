@@ -11,7 +11,7 @@
           
           <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center" style="margin-top:80px;">
-              <h1 class="" data-aos="fade-up">مرحباً بكم فى حراج</h1>
+              <h1 class="" data-aos="fade-up">مرحباً بكم فى إعلاناتك</h1>
               <p data-aos="fade-up" data-aos-delay="100">منتجات مميزة ، لعملاء مميزون</p>
             </div>
           </div>
@@ -151,8 +151,8 @@
     <div class="container">
       <div class="row justify-content-center mb-5">
         <div class="col-md-7 text-center border-primary">
-          <h2 class="font-weight-light text-primary">Popular Categories</h2>
-          <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
+          <h2 class="font-weight-light text-primary">التصنيفات الأساسية</h2>
+          <p class="color-black-opacity-5">تعرف على التصنيفات الأساسية</p>
         </div>
       </div>
       <div class="overlap-category mb-5">
@@ -250,7 +250,7 @@
     </div>
   </div>
   
-  <div class="site-section bg-white">
+ {{-- <div class="site-section bg-white">
     <div class="container">
 
       <div class="row justify-content-center mb-5">
@@ -310,5 +310,7 @@
       </div>
     </div>
   </div>
+  --}}
 
-@endsection
+
+  @endsection

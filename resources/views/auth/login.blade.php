@@ -8,14 +8,14 @@
       <div class="row justify-content-center">
         <div class="col-md-7 mb-5 aos-init aos-animate" data-aos="fade">
 
-          <h2 class="mb-5 text-black">Log In</h2>
+          <h2 class="mb-5 text-black text-center">دخــــول</h2>
 
           <form method="POST" action="{{ route('login') }}" class="p-5 bg-white">
             @csrf
             <div class="row form-group">
               
               <div class="col-md-12">
-                <label class="text-black" for="email">Email</label> 
+                <label class="text-black" for="email">البريد الإلكترونى</label> 
                 <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -28,7 +28,7 @@
             <div class="row form-group">
               
               <div class="col-md-12">
-                <label class="text-black" for="subject">Password</label> 
+                <label class="text-black" for="subject">كلمة المرور</label> 
                 <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                         <label class="form-check-label" for="remember">
-                            {{ __('Remember Me') }}
+                           تذكرنى
                         </label>
                     </div>
                 </div>
@@ -53,21 +53,21 @@
 
             <div class="row form-group">
               <div class="col-12">
-                <p>No account yet? <a href="register.html">Register</a></p>
+                <p>غير مسجل بعد? <a href="register.html">تسجيل</a></p>
               </div>
             </div>
 
           
             <div class="row form-group">
               <div class="col-md-12">
-                <input type="submit" value="Sign In" class="btn btn-primary py-2 px-4 text-white">
+                <input type="submit" value="دخول" class="btn btn-primary py-2 px-4 text-white">
               </div>
 
               @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                  <a class="btn btn-link" href="{{ route('password.request') }}">
+                     نسيت كلمةالمرور؟
+                  </a>
+              @endif
             </div>
 
 
