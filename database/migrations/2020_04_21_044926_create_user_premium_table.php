@@ -17,7 +17,7 @@ class CreateUserPremiumTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('membership_id');
-            $table->integer('duration_id');
+            //$table->integer('duration_id');
             $table->integer('bankaccount_id');
             $table->integer('mobile');
             $table->string('name');

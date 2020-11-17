@@ -12,11 +12,15 @@ $factory->define(Comment::class, function (Faker $faker) {
     $comments = Comment::all();
     $posts = Post::where('id' , '>' , '300')->get();
 
-    return [
-        'post_id' => $posts[$i++],
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'website' => $faker->url,
-        'body' => $faker->paragraph() 
-    ];
+    if($i < 100){
+
+        return [
+            'post_id' => $posts[$i++],
+            'name' => $faker->name,
+            'email' => $faker->email,
+            'website' => $faker->url,
+            'body' => $faker->paragraph() 
+        ];
+
+    }
 });

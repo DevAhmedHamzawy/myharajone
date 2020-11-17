@@ -10,8 +10,14 @@ $factory->define(CarPost::class, function (Faker $faker) {
     static $i = 0;
     $posts = Post::whereBetween('category_id', [140,539])->pluck('id')->toArray();
 
-    return [
-        'post_id' => $posts[$i++],
-        'model' => $faker->numberBetween(1960,2020),
-    ];
+    if($i < 100){
+
+        return [
+            'post_id' => $posts[$i++],
+            'model' => $faker->numberBetween(1960,2020),
+        ];
+
+    }else{
+        return [];
+    }
 });

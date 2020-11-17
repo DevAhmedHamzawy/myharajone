@@ -22,26 +22,26 @@
     <!-- END comment-list -->
     
     <div class="comment-form-wrap pt-5">
-      <h3 class="mb-5">Leave a comment</h3>
+      <h3 class="mb-5">إترك تعليق</h3>
       <form action="#" class="p-5 bg-light">
         <div class="form-group">
-          <label for="name">Name *</label>
+          <label for="name">الإسم *</label>
           <input type="text" class="form-control" id="name">
           <span id="name-comment-error" class="invalid-feedback" role="alert"></span>
         </div>
         <div class="form-group">
-          <label for="email">Email *</label>
+          <label for="email">البريد الإلكترونى *</label>
           <input type="email" class="form-control" id="email">
           <span id="email-comment-error" class="invalid-feedback" role="alert"></span>
         </div>
         <div class="form-group">
-          <label for="website">Website</label>
+          <label for="website">الموقع الإلكترونى / صفحة التواصل الإجتماعى</label>
           <input type="url" class="form-control" id="website">
           <span id="website-comment-error" class="invalid-feedback" role="alert"></span>
         </div>
 
         <div class="form-group">
-          <label for="message">Message</label>
+          <label for="message">التعليق</label>
           <textarea name="" id="body" cols="30" rows="10" class="form-control"></textarea>
           <span id="body-comment-error" class="invalid-feedback" role="alert"></span>
         </div>

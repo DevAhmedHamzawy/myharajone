@@ -25,32 +25,34 @@
           <div class="row">
             <div class="col-md-6">
               <h2 class="footer-heading mb-4">عن الموقع</h2>
-              <p>موقع مختص لعرض السلع</p>
+              <p>{{ $settings->about }}</p>
             </div>
             
             <div class="col-md-3">
               <h2 class="footer-heading mb-4">القائمة</h2>
               <ul class="list-unstyled">
-                <li><a href="#">عن الموقع</a></li>
-                <li><a href="#">خدمات</a></li>
-                <li><a href="#">تواصل معنا</a></li>
+                <li><a href="{{ url('about') }}">عن الموقع</a></li>
+                <li><a href="{{ url('services') }}">خدمات</a></li>
+                <li><a href="{{ url('contact-us') }}">تواصل معنا</a></li>
+                <li><a href="{{ url('terms') }}">الشروط والأحكام</a></li>
               </ul>
             </div>
             <div class="col-md-3">
               <h2 class="footer-heading mb-4">تابعنا</h2>
-              <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+              <a href="{{ $settings->facebook }}" target="_blank" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+              <a href="{{ $settings->twitter }}" target="_blank" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+              <a href="{{ $settings->instagram }}" target="_blank" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+              <a href="{{ $settings->linkedin }}" target="_blank" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
             </div>
           </div>
         </div>
         <div class="col-md-3">
-          <form action="#" method="post">
+          <form action="{{ route('welcome-search') }}" method="post">
+            @csrf
             <div class="input-group mb-3">
-              <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Search products..." aria-label="Enter Email" aria-describedby="button-addon2">
+              <input type="text" name="title" class="form-control border-secondary text-white bg-transparent" placeholder="ابحث عن الإعلان ..." aria-label="Enter Email" aria-describedby="button-addon2">
               <div class="input-group-append">
-                <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button>
+                <button class="btn btn-primary text-white" type="submit" id="button-addon2">بحث</button>
               </div>
             </div>
           </form>

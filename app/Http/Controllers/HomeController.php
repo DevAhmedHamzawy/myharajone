@@ -12,6 +12,7 @@ class HomeController extends Controller
     
     public function welcome()
     {
+        
         $posts = Post::withCount(['likes', 'favourites' ,'dislikes', 'reports'])->orderByUniqueViews('desc')->orderByDesc('likes_count')->orderByDesc('favourites_count')->orderBy('dislikes_count')->orderBy('reports_count')->limit(10)->get();
 
         foreach ($posts as $post) {

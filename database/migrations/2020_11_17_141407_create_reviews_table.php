@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMemberShipDurationsTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateMemberShipDurationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('member_ship_durations', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->integer('membership_id');
-            $table->string('display_name');
-            $table->integer('duration');
-            $table->decimal('price', 10,2);
+            $table->bigInteger('user_id');
+            $table->bigInteger('seller_id');
+            $table->text('body');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateMemberShipDurationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('member_ship_durations');
+        Schema::dropIfExists('reviews');
     }
 }

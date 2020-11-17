@@ -19,8 +19,6 @@ class CreatePostsTable extends Migration
             $table->bigInteger('area_id');
             $table->bigInteger('user_id');
             $table->bigInteger('category_id');
-            $table->text('tags');
-            $table->text('services');
             $table->string('title');
             $table->longText('body');
             $table->string('telephone1');

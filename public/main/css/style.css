@@ -95,7 +95,8 @@ h1, h2, h3, h4, h5,
 .form-control {
   height: 43px;
   border-radius: 0;
-  font-family: 'Cairo', sans-serif; }
+  font-family: 'Cairo', sans-serif;
+  padding-right: 30px; }
   .form-control:active, .form-control:focus {
     border-color: #2f89fc; }
   .form-control:hover, .form-control:active, .form-control:focus {

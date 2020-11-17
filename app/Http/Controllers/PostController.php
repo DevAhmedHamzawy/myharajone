@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CarPost;
 use App\Category;
+use App\Comment;
 use App\EstatePost;
 use App\Post;
 use Illuminate\Http\Request;
@@ -90,12 +91,21 @@ class PostController extends Controller
             views($parentCategory)->record();
         }
 
-
-       
-
         $post->areaName = Post::getMainArea($post->area_id);
         $views = views($post)->unique()->count();
-        return view('main.posts.show', compact('post','views'));
+
+        $posts = Post::whereCategoryId($post->category_id)->inRandomOrder()->take(10)->get();
+
+        $comments = Comment::latest()->take(10)->get();
+
+        $trendingPosts = Post::withCount(['likes', 'favourites' ,'dislikes', 'reports'])->orderByUniqueViews('desc')->orderByDesc('likes_count')->orderByDesc('favourites_count')->orderBy('dislikes_count')->orderBy('reports_count')->limit(10)->get();
+
+        foreach ($trendingPosts as $thepost) {
+            $thepost->areaName = Post::getMainArea($thepost->area_id);
+            $thepost->views = views($thepost)->unique()->count();
+        }
+
+        return view('main.posts.show', compact('post','views','posts','comments','trendingPosts'));
     }
 
     /**

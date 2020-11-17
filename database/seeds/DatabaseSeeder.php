@@ -8,6 +8,7 @@ use App\EstatePost;
 use App\Post;
 use App\PostMedia;
 use App\Profile;
+use App\Settings;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +21,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        //$this->call(UsersTableSeeder::class);
 
         //$this->call(MemberShipSeeder::class);
 
@@ -34,12 +35,14 @@ class DatabaseSeeder extends Seeder
         //factory(CarPost::class, 200)->create();
         //factory(EstatePost::class, 200)->create();
         
-        //factory(PostMedia::class, 10)->create();
+        //factory(PostMedia::class, 400)->create();
 
         //factory(Admin::class, 10)->create();
 
         //factory(Comment::class, 100)->create();
 
         //factory(Blacklist::class, 100)->create();
+
+        //factory(Settings::class, 1)->create();
     }
 }

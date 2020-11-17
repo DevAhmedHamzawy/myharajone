@@ -38,7 +38,7 @@
         
         @include('main.layouts.includes.header')
 
-        <main>
+        <main  @if (url()->current() !== env('APP_URL')) style="margin-top:115px;"  @endif>
             @yield('content')
         </main>
 

@@ -17,4 +17,9 @@ class Comment extends Model
     {
         return $this->created_at->diffForHumans();
     }
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }

@@ -42,6 +42,7 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
     Route::get('blacklist/{id}/{type}/blacklist', 'Admin\BlacklistController@blacklist')->name('the-blacklist');
     Route::get('blacklist/{id}/{type}/unblacklist', 'Admin\BlacklistController@unblacklist')->name('the-unblacklist');
 
+    Route::resource('settings', 'Admin\SettingsController');
 
 });
 
@@ -65,6 +66,7 @@ Route::resource('/posts', 'PostController');
 Route::post('/sendcomment', 'CommentController@store');
 Route::post('/sendmessage', 'MessageController@store');
 
+Route::get('/{sort}', 'PageController@show');
 
 //Post Like & Dislike
 Route::post('like', 'LikeController@like');

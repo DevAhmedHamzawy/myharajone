@@ -14,7 +14,7 @@
           <div class="row justify-content-center mt-5">
             <div class="col-md-8 text-center">
               <h1>Contact Us</h1>
-              <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+              <p class="mb-0">يمنكم التواصل معنا عبر الخدمات التالية</p>
             </div>
           </div>
 
@@ -37,12 +37,12 @@
 
             <div class="row form-group">
               <div class="col-md-6 mb-3 mb-md-0">
-                <label class="text-black" for="name">name</label>
+                <label class="text-black" for="name">الإسم</label>
                 <input type="text" class="form-control name">
                 <span class="name-contact-error invalid-feedback" role="alert"></span>
               </div>
               <div class="col-md-6">
-                <label class="text-black" for="mobile">Mobile</label>
+                <label class="text-black" for="mobile">رقم الجوال</label>
                 <input type="text" class="form-control mobile">
                 <span class="mobile-contact-error invalid-feedback" role="alert"></span>
               </div>
@@ -51,7 +51,7 @@
             <div class="row form-group">
               
               <div class="col-md-12">
-                <label class="text-black" for="email">Email</label> 
+                <label class="text-black" for="email">البريد الإلكترونى</label> 
                 <input type="email" class="form-control email">
                 <span class="email-contact-error invalid-feedback" role="alert"></span>
               </div>
@@ -64,7 +64,7 @@
 
             <div class="row form-group">
               <div class="col-md-12">
-                <label class="text-black" for="body">Body</label> 
+                <label class="text-black" for="body">محتوى الرسالة</label> 
                 <textarea name="message" class="form-control body" id="message" cols="30" rows="7" placeholder="Write your notes or questions here..."></textarea>
                 <span class="body-contact-error invalid-feedback" role="alert"></span> 
               </div>
@@ -72,7 +72,7 @@
 
             <div class="row form-group">
               <div class="col-md-12">
-                <input type="submit" onclick="sendContact();return false;"  value="Send Message" class="btn btn-primary py-2 px-4 text-white">
+                <input type="submit" onclick="sendContact();return false;"  value="إرسال الرسالة" class="btn btn-primary py-2 px-4 text-white">
               </div>
             </div>
 
@@ -82,21 +82,21 @@
         <div class="col-md-5"  data-aos="fade" data-aos-delay="100">
           
           <div class="p-4 mb-3 bg-white">
-            <p class="mb-0 font-weight-bold">Address</p>
-            <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
+            <p class="mb-0 font-weight-bold">العنوان</p>
+            <p class="mb-4">{{ $settings->address }}</p>
 
-            <p class="mb-0 font-weight-bold">Phone</p>
-            <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
+            <p class="mb-0 font-weight-bold">الجوال</p>
+            <p class="mb-4"><a href="#">{{ $settings->telephone }}</a></p>
 
-            <p class="mb-0 font-weight-bold">Email Address</p>
-            <p class="mb-0"><a href="#">youremail@domain.com</a></p>
+            <p class="mb-0 font-weight-bold">البريد الإلكترونى</p>
+            <p class="mb-0"><a href="#">{{ $settings->email }}</a></p>
 
           </div>
           
           <div class="p-4 mb-3 bg-white">
-            <h3 class="h5 text-black mb-3">More Info</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa ad iure porro mollitia architecto hic consequuntur. Distinctio nisi perferendis dolore, ipsa consectetur? Fugiat quaerat eos qui, libero neque sed nulla.</p>
-            <p><a href="#" class="btn btn-primary px-4 py-2 text-white">Learn More</a></p>
+            <h3 class="h5 text-black mb-3">عن الموقع</h3>
+            <p>{{ $settings->about }}</p>
+            <p><a href="#" class="btn btn-primary px-4 py-2 text-white">المزيد</a></p>
           </div>
 
         </div>

@@ -96,7 +96,7 @@
 
           <span class="icon icon-room"></span>
           <select class="form-control" id="cities" onchange="getSubCities(this);">
-           
+            <option selected disabled>المدينة</option>
           </select>
           </div>
         </div>
@@ -105,8 +105,10 @@
           <div class="select-wrap">
 
           <span class="icon icon-room"></span>
-          <select class="form-control" id="area_id" onchange="search()"></select>
-
+          <select class="form-control" id="area_id" onchange="search()">
+            <option selected disabled>المنطقة</option>
+          </select>
+           
           </div>
         </div>
 

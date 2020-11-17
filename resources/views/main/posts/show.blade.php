@@ -36,7 +36,7 @@
         <div class="col-lg-8">
 
           <figure>
-            <img src="{{ $post->main_img_path }}" alt="Image" class="img-fluid">
+            <img src="{{ $post->main_img_path }}" width="500" height="150" alt="Image" class="img-fluid">
             <figcaption>{{ $post->title }}</figcaption>
           </figure>
 
@@ -103,6 +103,9 @@
 
 
   @include('main.posts.includes.show.messages')
+
+  @include('main.welcome.golden_ads')
+
 @endsection
 
 
