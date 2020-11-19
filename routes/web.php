@@ -21,9 +21,7 @@ Route::post('admin/logout', 'Auth\AdminLoginController@logout')->name('admin.log
 
 Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/login'],function(){
 
-    Route::get('dashboard', function () {
-        dd(auth()->user());
-    });
+    Route::get('dashboard', 'Admin\DashboardController@index');
 
     Route::resource('users', 'Admin\UserController');
     Route::resource('admins', 'Admin\AdminController');

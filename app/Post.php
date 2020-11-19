@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class Post extends Model implements Viewable
 {
@@ -140,4 +141,39 @@ class Post extends Model implements Viewable
             return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
         }
     }
+
+    //Count Categories
+    public static function CountCategories()
+    {
+        $categories = Category::whereParentId(null)->get();
+        $countCategories = [];
+        
+        foreach($categories as $key => $value)
+        {
+            $key = $value->name;
+            $countCategories[$key] = [];
+            $countCategories[$key] = views($value)->unique()->count();
+        }
+ 
+        return $countCategories;
+    }
+
+    //Count Posts By Month
+    public Static function FindPostsByMonth($categoryName, $monthNumber)
+    {
+        $category = Category::whereName($categoryName)->first();
+        return Self::whereYear('created_at' , Carbon::now()->year)->whereMonth('created_at' , $monthNumber)->whereCategoryId($category->id)->count();
+    }
+
+    public static function countCategoryAds($categoryName)
+    {
+        $category = Category::whereName($categoryName)->first();
+        return Self::whereCategoryId($category->id)->count();
+    }
+
+     //Get Number Of Estates By Month And Estate Ad Sort
+     public static function FindByMonth($monthNumber, $adSortId)
+     {
+         return Self::whereCategoryId($adSortId)->whereYear('created_at' , Carbon::now()->year)->whereMonth('created_at' , $monthNumber)->count();
+     }
 }
