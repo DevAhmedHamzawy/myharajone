@@ -2,7 +2,9 @@
 
 @section('content')
 
-@include('main.posts.includes.show.cover')
+<div style="margin-top: -20px;">
+    @include('main.posts.includes.show.cover')
+</div>
 
 <form action="{{ route('userpremiums.store') }}" method="post" class="p-5 bg-white">
     @csrf

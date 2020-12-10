@@ -134,10 +134,48 @@ class Post extends Model implements Viewable
             {
                 return url('storage/estates/'. $this->name . '/' .$images[0]);
             }else{
-                return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
+                //return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
+
+                $images = [];
+
+                for ($i=0 ; $i < 33 ; $i++ ) { 
+                    array_push($images, $i.".jpg");
+                }
+
+                $number = rand(0,count($images)-1);
+                
+                if ($this->category_id > 5 && $this->category_id < 56) {
+                    return url('storage/cars' . '/' .$images[$number]);
+                }elseif ($this->category_id > 57 && $this->category_id < 71) {
+                    return url('storage/estates' . '/' .$images[$number]);
+                }elseif ($this->category_id > 72 && $this->category_id < 114) {
+                    return url('storage/devices' . '/' .$images[$number]);
+                }else{
+                    return url('storage/others' . '/' .$images[$number]);
+                }
+
             }
         }else{
             //return null;
+
+            $images = [];
+
+            for ($i=0 ; $i < 33 ; $i++ ) { 
+                array_push($images, $i.".jpg");
+            }
+
+            $number = rand(0,count($images)-1);
+            
+            if ($this->category_id > 5 && $this->category_id < 56) {
+                return url('storage/cars' . '/' .$images[$number]);
+            }elseif ($this->category_id > 57 && $this->category_id < 71) {
+                return url('storage/estates' . '/' .$images[$number]);
+            }elseif ($this->category_id > 72 && $this->category_id < 114) {
+                return url('storage/devices' . '/' .$images[$number]);
+            }else{
+                return url('storage/others' . '/' .$images[$number]);
+            }
+
             return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
         }
     }
@@ -160,9 +198,11 @@ class Post extends Model implements Viewable
 
     //Count Posts By Month
     public Static function FindPostsByMonth($categoryName, $monthNumber)
-    {
+    {   
         $category = Category::whereName($categoryName)->first();
-        return Self::whereYear('created_at' , Carbon::now()->year)->whereMonth('created_at' , $monthNumber)->whereCategoryId($category->id)->count();
+        //return Self::whereYear('created_at' , Carbon::now()->year)->whereMonth('created_at' , $monthNumber)->whereCategoryId($category->id)->count();
+        //return self::whereYear('created_at' , Carbon::now()->year)->whereMonth('created_at' , $monthNumber)->get();
+        return rand(0,50);
     }
 
     public static function countCategoryAds($categoryName)
@@ -171,9 +211,12 @@ class Post extends Model implements Viewable
         return Self::whereCategoryId($category->id)->count();
     }
 
-     //Get Number Of Estates By Month And Estate Ad Sort
-     public static function FindByMonth($monthNumber, $adSortId)
-     {
-         return Self::whereCategoryId($adSortId)->whereYear('created_at' , Carbon::now()->year)->whereMonth('created_at' , $monthNumber)->count();
-     }
+    //Get Number Of Estates By Month And Estate Ad Sort
+    public static function FindByMonth($monthNumber, $adSortId)
+    {
+        return Self::whereCategoryId($adSortId)->whereYear('created_at' , Carbon::now()->year)->whereMonth('created_at' , $monthNumber)->count();
+    }
+
+
+
 }

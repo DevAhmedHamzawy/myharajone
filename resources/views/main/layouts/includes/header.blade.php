@@ -9,10 +9,10 @@
       <div class="site-mobile-menu-body"></div>
     </div>
     
-    <header class="site-navbar container py-0 " role="banner">
+    <header class="site-navbar @if (url()->current() == env('APP_URL')) container @endif py-0 " role="banner" @if (url()->current() !== env('APP_URL')) style="background-color: #007bff; margin-top:-20px;"  @endif>
 
       <!-- <div class="container"> -->
-        <div class="row align-items-center">
+        <div class="row align-items-center" @if (url()->current() !== env('APP_URL')) style="padding: 15px;"  @endif>
           
           <div class="col-6 col-xl-2">
             <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0">{{ $settings->name }}</a></h1>

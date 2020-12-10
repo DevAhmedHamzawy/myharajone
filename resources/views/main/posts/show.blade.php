@@ -4,15 +4,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-        ul{
+        #social-links ul{
             list-style-type: none;
             display: inline;
         }
-        ul li{
+        #social-links ul li{
             display: inline-block;
             padding-left: 6.8em;
         }
-        ul li .fa{
+        #social-links ul li .fa{
             font-size: 2em;
         }
 
@@ -28,7 +28,7 @@
 
 @section('content')
 
-  @include('main.posts.includes.show.cover')
+  {{--@include('main.posts.includes.show.cover')--}}
 
   <div class="site-section">
     <div class="container">

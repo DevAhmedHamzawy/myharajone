@@ -16,6 +16,8 @@ class UserPremiumController extends Controller
 
     public function store(Request $request)
     {
-        auth()->user()->premium()->create($request->all());
+        auth()->user()->premium()->create($request->except('duration_id'));
+
+        return redirect('home');
     }
 }
